@@ -1,0 +1,154 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Registered user profile with account details.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique user identifier matching Firebase Auth UID.",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_-]+$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "User email address.",
+          "maxLength": 256
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Full name or display name of the user.",
+          "maxLength": 128
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Avatar profile picture URL.",
+          "maxLength": 1024
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last update timestamp."
+        }
+      },
+      "required": ["id", "email", "displayName"]
+    },
+    "Inquiry": {
+      "title": "Project Inquiry",
+      "description": "Client project brief or service inquiry record.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique inquiry document ID.",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "description": "UID of the user who submitted the inquiry.",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_-]+$"
+        },
+        "userName": {
+          "type": "string",
+          "description": "Contact person name.",
+          "maxLength": 128
+        },
+        "userEmail": {
+          "type": "string",
+          "format": "email",
+          "description": "Contact email address.",
+          "maxLength": 256
+        },
+        "company": {
+          "type": "string",
+          "description": "Company or venture name.",
+          "maxLength": 128
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone or WhatsApp number.",
+          "maxLength": 64
+        },
+        "service": {
+          "type": "string",
+          "description": "Target division or service area.",
+          "maxLength": 128
+        },
+        "budget": {
+          "type": "string",
+          "description": "Estimated budget bracket.",
+          "maxLength": 64
+        },
+        "timeline": {
+          "type": "string",
+          "description": "Desired delivery timeline.",
+          "maxLength": 64
+        },
+        "details": {
+          "type": "string",
+          "description": "Project goals and description.",
+          "maxLength": 4000
+        },
+        "status": {
+          "type": "string",
+          "description": "Current workflow status.",
+          "enum": ["submitted", "under_review", "contacted"]
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Server timestamp of creation."
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Server timestamp of last update."
+        }
+      },
+      "required": ["id", "userId", "userName", "userEmail", "service", "status"]
+    },
+    "Admin": {
+      "title": "Admin Record",
+      "description": "Designated administrator record.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Admin UID.",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_-]+$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Admin email address.",
+          "maxLength": 256
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when admin role was granted."
+        }
+      },
+      "required": ["id", "email"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Stores user profiles keyed by Auth UID."
+    },
+    "/inquiries/{inquiryId}": {
+      "schema": "Inquiry",
+      "description": "Stores client project briefs and service inquiries."
+    },
+    "/admins/{adminId}": {
+      "schema": "Admin",
+      "description": "Trusted administrative privilege documents."
+    }
+  }
+}

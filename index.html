@@ -1,0 +1,3935 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script>
+    (function () {
+      try {
+        var _rawFetch;
+        try { _rawFetch = window.fetch; } catch (_) {}
+        var currentFetch = typeof _rawFetch === 'function' ? _rawFetch.bind(window) : _rawFetch;
+        if (typeof Window !== 'undefined' && Window.prototype) {
+          try {
+            var protoDesc = Object.getOwnPropertyDescriptor(Window.prototype, 'fetch');
+            if (protoDesc && protoDesc.get && !protoDesc.set) {
+              Object.defineProperty(Window.prototype, 'fetch', {
+                get: function () { return currentFetch; },
+                set: function (fn) { currentFetch = fn; },
+                configurable: true,
+                enumerable: protoDesc.enumerable !== undefined ? protoDesc.enumerable : true,
+              });
+            }
+          } catch (_) {}
+        }
+        try {
+          var winDesc = Object.getOwnPropertyDescriptor(window, 'fetch');
+          if (!winDesc || !winDesc.set) {
+            Object.defineProperty(window, 'fetch', {
+              get: function () { return currentFetch; },
+              set: function (fn) { currentFetch = fn; },
+              configurable: true,
+              enumerable: true,
+            });
+          }
+        } catch (_) {}
+      } catch (_) {}
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#E6EDF6">
+  <title>JL Technologies — Digital Marketing, AI &amp; Technology Solutions</title>
+  <meta name="description" content="JL Technologies combines digital marketing, creative design, software development, AI, automation, and blockchain solutions to help businesses grow.">
+  <meta property="og:title" content="JL Technologies — Digital Marketing, AI &amp; Technology Solutions">
+  <meta property="og:description" content="JL Technologies combines digital marketing, creative design, software development, AI, automation, and blockchain solutions to help businesses grow.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JL Technologies — Digital Marketing, AI &amp; Technology Solutions">
+  <meta name="twitter:description" content="JL Technologies combines digital marketing, creative design, software development, AI, automation, and blockchain solutions to help businesses grow.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=block" rel="stylesheet">
+  <style>
+    :root{
+      --u: min(100vw / 1280, 100vh / 960);
+      --ink:#020C21; --ink-soft:#0F182F; --muted:#59627E; --muted2:#4D5B77;
+      --frame:#E6EDF6; --cta:#0F1B31; --cta-knob:#384B64; --meet-knob:#1A2B45;
+      --accent:#4A78B0; --track:#DDE4EE;
+    }
+    @supports (height:100dvh){:root{--u: min(100vw / 1280, 100dvh / 960)}}
+
+    *,*::before,*::after{box-sizing:border-box}
+    html{
+      scroll-behavior:smooth;
+      margin:0;padding:0;
+      background:var(--frame);
+    }
+    body{
+      background:var(--frame);
+      overflow-x:hidden;
+      overflow-y:auto;
+      min-height:100%;
+      margin:0;padding:0;
+      color:var(--ink);
+      font-family:Inter,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-synthesis:none;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:geometricPrecision;
+    }
+
+    .page{position:relative;width:100%;min-height:100%;background:var(--frame)}
+    .hero-stage{position:relative;width:100%;height:100vh;min-height:640px;overflow:hidden;background:var(--frame)}
+    @supports (height:100dvh){.hero-stage{height:100dvh}}
+    .card{position:absolute;inset:0;isolation:isolate}
+
+    .bg{
+      position:absolute;left:-2px;top:-2px;
+      width:calc(100vw + 4px);height:calc(100vh + 4px);
+      object-fit:cover;object-position:50% 50%;
+      z-index:0;filter:brightness(1.006) saturate(.965);
+      transform:scale(1.002);
+    }
+    @supports (height:100dvh){.bg{height:calc(100dvh + 4px)}}
+    .tint{position:absolute;inset:0;background:rgba(255,249,240,.05);z-index:1;pointer-events:none}
+
+    /* Absolute position helper system */
+    .stack,.row,.hero-blk,.tagrow,.stats,.stat{display:contents}
+    .l{position:absolute;z-index:2}
+    .t{left:calc((var(--x) + 13)*var(--u));top:calc((var(--y) + 15)*var(--u))}
+    .c{left:calc((var(--x) + 13)*var(--u));top:calc(50% + (var(--y) - 2)*var(--u))}
+    .b{left:calc((var(--x) + 13)*var(--u));bottom:calc((var(--y) + 19)*var(--u))}
+    .r{left:auto;right:calc((var(--x) + 19)*var(--u))}
+    .sx{display:inline-block;transform-origin:left top;transform:scaleX(var(--sx,1))}
+
+    /* BRAND */
+    .brand{display:flex;align-items:center;text-decoration:none;color:inherit;height:calc(39*var(--u))}
+    .mark{width:calc(39*var(--u));height:calc(39*var(--u));display:block;flex:none}
+    .brand b{
+      font-size:calc(22*var(--u));font-weight:520;letter-spacing:-0.03em;line-height:1;
+      margin-left:calc(7.7*var(--u));
+    }
+
+    /* NAV PILL */
+    .nav{
+      position:absolute;left:50%;transform:translateX(calc(-50% - 3*var(--u)));
+      top:calc((31 + 15)*var(--u));width:calc(293*var(--u));height:calc(67*var(--u));
+      border-radius:999px;
+      background:linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 45%, rgba(255,255,255,0.01) 65%, rgba(255,255,255,0.12) 100%);
+      border:calc(1*var(--u)) solid rgba(255,255,255,0.38);
+      border-top:calc(1.2*var(--u)) solid rgba(255,255,255,0.75);
+      border-left:calc(1*var(--u)) solid rgba(255,255,255,0.60);
+      -webkit-backdrop-filter:blur(calc(12*var(--u))) saturate(160%);
+      backdrop-filter:blur(calc(12*var(--u))) saturate(160%);
+      box-shadow:inset 0 calc(1.5*var(--u)) calc(1.5*var(--u)) rgba(255,255,255,0.70),
+        inset 0 calc(-1*var(--u)) calc(1*var(--u)) rgba(255,255,255,0.20),
+        inset 0 0 calc(16*var(--u)) rgba(255,255,255,0.08),
+        0 0 0 calc(1*var(--u)) rgba(120,145,180,0.12),
+        0 calc(8*var(--u)) calc(24*var(--u)) rgba(15,23,42,0.08);
+      z-index:2;
+      overflow:hidden;
+    }
+    .nav::before{
+      content:'';position:absolute;inset:0;border-radius:inherit;
+      background:linear-gradient(120deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.06) 30%, transparent 60%);
+      pointer-events:none;
+    }
+    .nav>*{position:absolute}
+    .nav span{
+      font-size:calc(15*var(--u));font-weight:570;letter-spacing:-0.0561em;
+      line-height:1;color:#202940;white-space:nowrap;
+    }
+    .nav i{display:block}
+    .n-home{left:calc(36*var(--u));top:calc(22*var(--u));width:calc(21.3*var(--u));height:calc(22.4*var(--u));text-decoration:none}
+    .n-explore{left:calc(72*var(--u));top:calc(26*var(--u));text-decoration:none}
+    .n-div{
+      left:calc(144*var(--u));top:calc(18*var(--u));width:calc(1.5*var(--u));
+      height:calc(31*var(--u));background:#CED5E0;border:0;
+    }
+    .n-grid{left:calc(168*var(--u));top:calc(24*var(--u));width:calc(20.2*var(--u));height:calc(20.2*var(--u));text-decoration:none}
+    .n-product{left:calc(203.8*var(--u));top:calc(26*var(--u));text-decoration:none}
+
+    /* PRIMARY CTA */
+    .cta{
+      width:calc(217*var(--u));height:calc(70*var(--u));border-radius:999px;
+      background:var(--cta);text-decoration:none;display:block;
+      box-shadow:0 calc(10*var(--u)) calc(24*var(--u)) rgba(11,26,50,.18);
+    }
+    .cta span{
+      position:absolute;left:calc(28*var(--u));top:calc(27.55*var(--u));
+      font-size:calc(17*var(--u));font-weight:400;letter-spacing:-0.0442em;line-height:1;
+      color:#fff;white-space:nowrap;
+    }
+    .knob{
+      position:absolute;border-radius:50%;background:var(--cta-knob);
+      display:flex;align-items:center;justify-content:center;
+    }
+    .cta .knob{
+      left:calc(156*var(--u));top:calc(10.5*var(--u));
+      width:calc(49*var(--u));height:calc(49*var(--u));
+    }
+    .knob svg{width:calc(17*var(--u));height:calc(17*var(--u))}
+
+    /* HERO TYPE */
+    .eyebrow{
+      font-size:calc(16*var(--u));font-weight:470;letter-spacing:-0.015em;
+      line-height:1;color:var(--muted);white-space:nowrap;
+    }
+    h1{
+      font-size:calc(98*var(--u));font-weight:360;letter-spacing:-0.035em;
+      line-height:calc(90*var(--u));color:var(--ink);white-space:nowrap;
+      margin:0;
+    }
+
+    .play{
+      width:calc(50.5*var(--u));height:calc(50.5*var(--u));border-radius:50%;
+      background:linear-gradient(135deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.14) 100%);
+      border:calc(1*var(--u)) solid rgba(255, 255, 255, 0.40);
+      border-top:calc(1.2*var(--u)) solid rgba(255, 255, 255, 0.80);
+      border-left:calc(1*var(--u)) solid rgba(255, 255, 255, 0.65);
+      -webkit-backdrop-filter:blur(calc(10*var(--u))) saturate(160%);
+      backdrop-filter:blur(calc(10*var(--u))) saturate(160%);
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:inset 0 calc(1.5*var(--u)) calc(1.5*var(--u)) rgba(255,255,255,0.85),
+        inset 0 calc(-1*var(--u)) calc(1*var(--u)) rgba(255,255,255,0.22),
+        inset 0 0 calc(12*var(--u)) rgba(255,255,255,0.12),
+        0 0 0 calc(1*var(--u)) rgba(120,145,180,0.12),
+        0 calc(8*var(--u)) calc(22*var(--u)) rgba(15,23,42,0.08);
+      text-decoration:none;
+      position:relative;overflow:hidden;
+      transition:all .25s ease;
+    }
+    .play::before{
+      content:'';position:absolute;inset:0;border-radius:inherit;
+      background:linear-gradient(125deg, rgba(255,255,255,0.50) 0%, rgba(255,255,255,0.10) 35%, transparent 60%);
+      pointer-events:none;
+    }
+    .play:hover{
+      background:linear-gradient(135deg, rgba(255,255,255,0.36) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.22) 100%);
+      transform:scale(1.06);
+      border-top-color:#fff;
+      box-shadow:inset 0 calc(2*var(--u)) calc(2*var(--u)) #fff,
+        inset 0 0 calc(16*var(--u)) rgba(255,255,255,0.25),
+        0 0 0 calc(1.5*var(--u)) rgba(0,132,255,.32),
+        0 calc(12*var(--u)) calc(28*var(--u)) rgba(15,23,42,.12);
+    }
+    .play svg{width:calc(13*var(--u));height:calc(14*var(--u))}
+
+    .tag{
+      font-size:calc(24*var(--u));font-weight:470;letter-spacing:-0.03em;line-height:1;
+      color:var(--ink-soft);white-space:nowrap;
+    }
+
+    /* GLASS PANEL */
+    .panel{
+      width:calc(275*var(--u));height:calc(271*var(--u));border-radius:calc(28*var(--u));
+      background:linear-gradient(135deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.04) 45%, rgba(255,255,255,0.01) 65%, rgba(255,255,255,0.12) 100%);
+      border:calc(1*var(--u)) solid rgba(255,255,255,0.35);
+      border-top:calc(1.2*var(--u)) solid rgba(255,255,255,0.75);
+      border-left:calc(1*var(--u)) solid rgba(255,255,255,0.60);
+      -webkit-backdrop-filter:blur(calc(12*var(--u))) saturate(160%);
+      backdrop-filter:blur(calc(12*var(--u))) saturate(160%);
+      box-shadow:inset 0 calc(1.5*var(--u)) calc(1.5*var(--u)) rgba(255,255,255,0.70),
+        inset 0 calc(-1*var(--u)) calc(1*var(--u)) rgba(255,255,255,0.18),
+        inset 0 0 calc(24*var(--u)) rgba(255,255,255,0.08),
+        0 0 0 calc(1*var(--u)) rgba(120,145,180,0.12),
+        0 calc(18*var(--u)) calc(40*var(--u)) rgba(15,23,42,0.08);
+      position:relative;
+      overflow:hidden;
+    }
+    .panel::before{
+      content:'';position:absolute;inset:0;border-radius:inherit;
+      background:linear-gradient(125deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.06) 35%, transparent 65%);
+      pointer-events:none;
+    }
+    .panel>*{position:absolute}
+    .p-title{
+      left:calc(29*var(--u));top:calc(44.7*var(--u));font-size:calc(24*var(--u));
+      font-weight:500;letter-spacing:-0.02em;line-height:1;color:var(--ink);white-space:nowrap;
+    }
+    .dot{
+      left:calc(137*var(--u));top:calc(53*var(--u));width:calc(10*var(--u));
+      height:calc(10*var(--u));border-radius:50%;background:var(--accent);
+      box-shadow:0 0 calc(8*var(--u)) rgba(74,120,176,0.65);
+    }
+    .shield{
+      left:calc(177*var(--u));top:calc(46*var(--u));width:calc(73*var(--u));
+      height:calc(73*var(--u));border-radius:50%;
+      background:linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.15) 100%);
+      border:calc(1*var(--u)) solid rgba(255,255,255,0.40);
+      border-top:calc(1.2*var(--u)) solid rgba(255,255,255,0.80);
+      border-left:calc(1*var(--u)) solid rgba(255,255,255,0.65);
+      -webkit-backdrop-filter:blur(calc(10*var(--u))) saturate(160%);
+      backdrop-filter:blur(calc(10*var(--u))) saturate(160%);
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:inset 0 calc(1.5*var(--u)) calc(1.5*var(--u)) rgba(255,255,255,0.85),
+        inset 0 calc(-1*var(--u)) calc(1*var(--u)) rgba(255,255,255,0.20),
+        inset 0 0 calc(16*var(--u)) rgba(255,255,255,0.12),
+        0 0 calc(20*var(--u)) calc(4*var(--u)) rgba(255,255,255,0.3),
+        0 calc(6*var(--u)) calc(18*var(--u)) rgba(15,23,42,0.06);
+      position:relative;overflow:hidden;
+    }
+    .shield::before{
+      content:'';position:absolute;inset:0;border-radius:inherit;
+      background:linear-gradient(125deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.08) 35%, transparent 60%);
+      pointer-events:none;
+    }
+    .shield svg{width:calc(30*var(--u));height:calc(39*var(--u))}
+    .p-sub{
+      left:calc(29*var(--u));top:calc(94.35*var(--u));font-size:calc(18*var(--u));
+      font-weight:400;letter-spacing:-0.02em;line-height:calc(20.4*var(--u));color:var(--muted2);
+      margin:0;
+    }
+    .scale{
+      left:calc(36*var(--u));top:calc(189*var(--u));width:calc(204*var(--u));
+      display:flex;justify-content:space-between;font-size:calc(12.5*var(--u));font-weight:450;
+      letter-spacing:-0.02em;line-height:1;color:#586580;
+    }
+    .track{
+      left:calc(46*var(--u));top:calc(221*var(--u));width:calc(190*var(--u));
+      height:calc(8*var(--u));border-radius:999px;
+      background:rgba(255,255,255,0.18);
+      border:calc(0.8*var(--u)) solid rgba(255,255,255,0.45);
+      border-top:calc(1*var(--u)) solid rgba(255,255,255,0.70);
+      -webkit-backdrop-filter:blur(calc(8*var(--u))) saturate(150%);
+      backdrop-filter:blur(calc(8*var(--u))) saturate(150%);
+      box-shadow:inset 0 calc(1*var(--u)) calc(1*var(--u)) rgba(255,255,255,0.5),
+        inset 0 0 calc(6*var(--u)) rgba(255,255,255,0.1);
+      overflow:hidden;
+    }
+    .track i{display:block;width:calc(75*var(--u));height:100%;border-radius:999px;background:#5F88B4;transform-origin:left center}
+
+    /* STATS ROW */
+    .num{
+      font-size:calc(100*var(--u));font-weight:200;letter-spacing:0em;line-height:1;
+      color:var(--ink);white-space:nowrap;
+    }
+    .lbl{
+      font-size:calc(19*var(--u));font-weight:400;letter-spacing:-0.02em;
+      line-height:calc(23.5*var(--u));color:#39455F;margin:0;
+    }
+    .slash{
+      width:calc(23*var(--u));height:calc(75*var(--u));
+      background:linear-gradient(to top left,transparent calc(50% - .85*var(--u)),
+        #A7B4C6 calc(50% - .85*var(--u)),#A7B4C6 calc(50% + .85*var(--u)),
+        transparent calc(50% + .85*var(--u)));
+      transform-origin:center center;
+    }
+
+    /* MEET JL TECHNOLOGIES PILL */
+    .meet{
+      width:calc(269*var(--u));height:calc(86*var(--u));border-radius:999px;display:block;
+      text-decoration:none;
+      background:linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.12) 100%);
+      border:calc(1*var(--u)) solid rgba(255,255,255,0.38);
+      border-top:calc(1.2*var(--u)) solid rgba(255,255,255,0.75);
+      border-left:calc(1*var(--u)) solid rgba(255,255,255,0.60);
+      -webkit-backdrop-filter:blur(calc(12*var(--u))) saturate(160%);
+      backdrop-filter:blur(calc(12*var(--u))) saturate(160%);
+      box-shadow:inset 0 calc(1.5*var(--u)) calc(1.5*var(--u)) rgba(255,255,255,0.70),
+        inset 0 calc(-1*var(--u)) calc(1*var(--u)) rgba(255,255,255,0.20),
+        inset 0 0 calc(20*var(--u)) rgba(255,255,255,0.08),
+        0 0 0 calc(1*var(--u)) rgba(120,145,180,0.12),
+        0 calc(8*var(--u)) calc(24*var(--u)) rgba(15,23,42,0.07);
+      position:relative;overflow:hidden;
+    }
+    .meet::before{
+      content:'';position:absolute;inset:0;border-radius:inherit;
+      background:linear-gradient(120deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.06) 35%, transparent 65%);
+      pointer-events:none;
+    }
+    .meet>*{position:absolute}
+    .thumb{
+      left:calc(12*var(--u));top:calc(11*var(--u));width:calc(64*var(--u));
+      height:calc(64*var(--u));border-radius:50%;overflow:hidden;
+      box-shadow:inset 0 0 0 calc(1*var(--u)) rgba(255,255,255,.45);
+      background:#040711;display:flex;align-items:center;justify-content:center;
+    }
+    .thumb svg{width:75%;height:75%;display:block}
+    .meet b{
+      left:calc(86*var(--u));top:calc(35.5*var(--u));font-size:calc(14.8*var(--u));
+      font-weight:450;letter-spacing:-0.05em;line-height:1;color:#1B2A44;white-space:nowrap;
+    }
+    .meet .knob{
+      left:calc(206*var(--u));top:calc(17*var(--u));width:calc(50*var(--u));
+      height:calc(50*var(--u));background:var(--meet-knob);
+    }
+
+    /* BURGER BASE */
+    .burger{
+      display:none;
+      align-items:center;justify-content:center;
+      flex-direction:column;gap:calc(6*var(--u));width:calc(56*var(--u));height:calc(56*var(--u));
+      border-radius:999px;padding:0;cursor:pointer;
+      background:linear-gradient(135deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.14) 100%);
+      border:calc(1*var(--u)) solid rgba(255,255,255,0.40);
+      border-top:calc(1.2*var(--u)) solid rgba(255,255,255,0.75);
+      border-left:calc(1*var(--u)) solid rgba(255,255,255,0.60);
+      -webkit-backdrop-filter:blur(calc(12*var(--u))) saturate(160%);
+      backdrop-filter:blur(calc(12*var(--u))) saturate(160%);
+      box-shadow:inset 0 calc(1.5*var(--u)) calc(1.5*var(--u)) rgba(255,255,255,0.75),
+        inset 0 calc(-1*var(--u)) calc(1*var(--u)) rgba(255,255,255,0.20),
+        0 0 0 calc(1*var(--u)) rgba(120,145,180,0.14),
+        0 calc(4*var(--u)) calc(14*var(--u)) rgba(15,23,42,0.06);
+    }
+    .burger i{
+      display:block;width:calc(20*var(--u));height:calc(1.8*var(--u));border-radius:999px;
+      background:#202940;transition:transform .3s cubic-bezier(.2,.7,.3,1),opacity .3s;
+    }
+    .burger[aria-expanded="true"] i:first-child{transform:translateY(calc(3.9*var(--u))) rotate(45deg)}
+    .burger[aria-expanded="true"] i:last-child{transform:translateY(calc(-3.9*var(--u))) rotate(-45deg)}
+    .burger:focus-visible{outline:calc(2*var(--u)) solid #2f5f9e;outline-offset:calc(3*var(--u))}
+    .menu{display:contents}
+
+    /* HOVER & FOCUS */
+    @media (prefers-reduced-motion:no-preference){
+      .cta,.meet{transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+      .cta:hover,.meet:hover{transform:translateY(calc(-2*var(--u)))}
+    }
+    a:focus-visible{outline:calc(2*var(--u)) solid #2f5f9e;outline-offset:calc(3*var(--u))}
+
+    /* PRE-STATE CSS FOR ENTRANCE */
+    html.pre .brand,html.pre .nav,html.pre .cta,html.pre .burger,
+    html.pre .eyebrow,html.pre .play,html.pre .tag,
+    html.pre .panel,html.pre .lbl,html.pre .meet{opacity:0}
+    html.pre h1 .sx,html.pre .num{clip-path:inset(100% 0 -14% 0)}
+    html.pre .slash{scale:1 0}
+    html.pre .track i{scale:0 1}
+    html.pre .dot{scale:0}
+
+    /* RESPONSIVE TIER 2: COMPACT */
+    @media (max-aspect-ratio: 87/80), (max-width: 899px), (max-height: 639px){
+      :root{--u: min(100vw / 880, 100vh / 1220); --pad: 52}
+      @supports (height:100dvh){:root{--u: min(100vw / 880, 100dvh / 1220)}}
+      .card{inset:0;border-radius:0}
+      .bg{left:-2px;top:-2px}
+      .stack{
+        display:flex;flex-direction:column;justify-content:space-between;
+        position:absolute;inset:0;z-index:2;padding:calc(var(--pad)*var(--u));
+      }
+      .row,.hero-blk,.stats,.stat,.tagrow{display:flex}
+      .row{align-items:center;justify-content:space-between;width:100%}
+      .hero-blk{flex-direction:column;align-items:flex-start;width:100%;margin:calc(30*var(--u)) 0}
+      .tagrow{align-items:center;gap:calc(16*var(--u));margin-top:calc(28*var(--u))}
+      .stats{align-items:flex-end;gap:calc(26*var(--u));flex-wrap:wrap}
+      .stat{align-items:flex-end;gap:calc(16*var(--u))}
+      .l,.t,.c,.b,.r{position:relative;left:auto;right:auto;top:auto;bottom:auto}
+      h1{margin-top:calc(16*var(--u))}
+      .play{flex:none}
+      .panel{align-self:flex-end;margin-top:calc(36*var(--u))}
+      .row:last-child{flex-wrap:wrap;row-gap:calc(24*var(--u))}
+      .meet{margin-left:auto}
+      .nav{position:relative;left:auto;top:auto;transform:none;flex:none}
+
+      /* Compact landscape */
+      @media (min-aspect-ratio: 1/1){
+        :root{--u: min(100vw / 1240, 100vh / 820); --pad: 46}
+        @supports (height:100dvh){:root{--u: min(100vw / 1240, 100dvh / 820)}}
+        @media (max-height: 520px){
+          :root{--u: min(100vw / 900, 100vh / 560); --pad: 30}
+          @supports (height:100dvh){:root{--u: min(100vw / 900, 100dvh / 560)}}
+        }
+        .hero-blk{
+          display:grid;grid-template-columns:minmax(0,1fr) auto;
+          column-gap:calc(46*var(--u));align-items:end;margin:calc(24*var(--u)) 0;
+        }
+        .eyebrow{grid-column:1;grid-row:1}
+        h1{grid-column:1;grid-row:2}
+        .tagrow{grid-column:1;grid-row:3}
+        .panel{grid-column:2;grid-row:1 / span 3;align-self:center;margin-top:0}
+        .row:last-child{flex-wrap:nowrap}
+      }
+
+      /* RESPONSIVE TIER 3: MOBILE */
+      @media (max-width: 640px) and (max-aspect-ratio: 1/1){
+        :root{
+          --u: min(100vw / 600, 100vh / 940);
+          --t: max(var(--u), min(0.85px, 100vh / 780));
+          --pad: 40;
+        }
+        @supports (height:100dvh){
+          :root{
+            --u: min(100vw / 600, 100dvh / 940);
+            --t: max(var(--u), min(0.85px, 100dvh / 780));
+          }
+        }
+        .sx{transform:none}
+        .brand{height:auto}
+        .mark{width:calc(36*var(--t));height:calc(36*var(--t))}
+        .brand b{font-size:calc(21*var(--t));margin-left:calc(8*var(--t))}
+        h1{font-size:calc(66*var(--u));line-height:calc(64*var(--u));margin-top:calc(12*var(--u))}
+        .eyebrow{font-size:calc(16*var(--t))}
+        .hero-blk{margin:calc(24*var(--u)) 0}
+        .tagrow{gap:calc(14*var(--t));margin-top:calc(22*var(--u))}
+        .tag{font-size:calc(19*var(--t));line-height:calc(25*var(--t));white-space:normal}
+        .play{width:calc(48*var(--t));height:calc(48*var(--t))}
+        .play svg{width:calc(12*var(--t));height:calc(13*var(--t))}
+        .panel{width:100%;align-self:stretch;height:calc(212*var(--t));margin-top:calc(24*var(--u))}
+        .p-title{left:calc(30*var(--t));top:calc(30*var(--t));font-size:calc(24*var(--t))}
+        .dot{left:calc(137*var(--t));top:calc(40*var(--t));width:calc(10*var(--t));height:calc(10*var(--t))}
+        .shield{
+          left:auto;right:calc(26*var(--t));top:calc(22*var(--t));
+          width:calc(64*var(--t));height:calc(64*var(--t));
+        }
+        .shield svg{width:calc(26*var(--t));height:calc(34*var(--t))}
+        .p-sub{left:calc(31*var(--t));top:calc(80*var(--t));font-size:calc(17*var(--t));line-height:calc(21*var(--t))}
+        .scale{left:calc(31*var(--t));top:calc(150*var(--t));width:calc(100% - 62*var(--t));font-size:calc(13*var(--t))}
+        .track{left:calc(31*var(--t));top:calc(178*var(--t));width:calc(100% - 62*var(--t));height:calc(8*var(--t))}
+        .track i{width:38%}
+        .stats{gap:calc(18*var(--u));align-items:center;flex-wrap:nowrap}
+        .stat{flex-direction:column;align-items:flex-start;gap:calc(6*var(--t))}
+        .num{font-size:calc(64*var(--u))}
+        .lbl{font-size:calc(15*var(--t));line-height:calc(19*var(--t))}
+        .slash{height:calc(92*var(--t));width:calc(29*var(--t));align-self:center}
+        .meet{width:100%;height:calc(72*var(--t))}
+        .thumb{left:calc(9*var(--t));top:calc(5*var(--t));width:calc(62*var(--t));height:calc(62*var(--t))}
+        .meet b{left:calc(80*var(--t));top:calc(28*var(--t));font-size:calc(15*var(--t))}
+        .meet .knob{
+          left:auto;right:calc(11*var(--t));top:calc(11*var(--t));
+          width:calc(50*var(--t));height:calc(50*var(--t));
+        }
+      }
+    }
+
+    /* NAV COLLAPSE */
+    @media (max-aspect-ratio: 1/1){
+      .burger{display:flex}
+      .menu{
+        display:block;position:absolute;z-index:9;
+        top:calc((var(--pad) + 68)*var(--u));right:calc(var(--pad)*var(--u));
+        width:calc(304*var(--u));padding:calc(16*var(--u));border-radius:calc(30*var(--u));
+        background:linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.15) 100%);
+        border:calc(1*var(--u)) solid rgba(255,255,255,0.40);
+        border-top:calc(1.2*var(--u)) solid rgba(255,255,255,0.80);
+        border-left:calc(1*var(--u)) solid rgba(255,255,255,0.65);
+        -webkit-backdrop-filter:blur(calc(14*var(--u))) saturate(160%);
+        backdrop-filter:blur(calc(14*var(--u))) saturate(160%);
+        box-shadow:inset 0 calc(1.5*var(--u)) calc(1.5*var(--u)) rgba(255,255,255,0.75),
+          inset 0 calc(-1*var(--u)) calc(1*var(--u)) rgba(255,255,255,0.20),
+          inset 0 0 calc(20*var(--u)) rgba(255,255,255,0.08),
+          0 0 0 calc(1.3*var(--u)) rgba(120,145,180,.14),
+          0 calc(16*var(--u)) calc(38*var(--u)) rgba(15,23,42,.12);
+        opacity:0;visibility:hidden;transform:translateY(calc(-10*var(--u))) scale(.97);
+        transform-origin:top right;
+        transition:opacity .26s cubic-bezier(.2,.7,.3,1),
+          transform .26s cubic-bezier(.2,.7,.3,1),visibility .26s;
+        overflow:hidden;
+      }
+      .menu::before{
+        content:'';position:absolute;inset:0;border-radius:inherit;
+        background:linear-gradient(120deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.06) 35%, transparent 65%);
+        pointer-events:none;
+      }
+      .menu[data-open]{opacity:1;visibility:visible;transform:none}
+      .menu .nav{
+        position:relative;left:auto;top:auto;transform:none;width:100%;height:auto;
+        display:grid;grid-template-columns:auto 1fr;align-items:center;
+        column-gap:calc(16*var(--u));row-gap:calc(16*var(--u));
+        padding:calc(8*var(--u)) calc(10*var(--u));border:0;background:none;box-shadow:none;
+        -webkit-backdrop-filter:none;backdrop-filter:none;
+      }
+      .menu .nav>*{position:relative;left:auto;top:auto}
+      .menu .nav span{font-size:calc(19*var(--u))}
+      .menu .n-home{width:calc(21*var(--u));height:calc(22*var(--u))}
+      .menu .n-grid{width:calc(21*var(--u));height:calc(21*var(--u))}
+      .menu .n-div{grid-column:1 / -1;width:100%;height:calc(1.2*var(--u));margin:calc(2*var(--u)) 0}
+      .menu .cta{
+        position:relative;left:auto;top:auto;width:100%;height:calc(64*var(--u));
+        margin-top:calc(14*var(--u));
+      }
+      .menu .cta span{left:calc(28*var(--u));top:calc(23*var(--u));font-size:calc(19*var(--u))}
+      .menu .cta .knob{
+        left:auto;right:calc(9*var(--u));top:calc(7*var(--u));
+        width:calc(50*var(--u));height:calc(50*var(--u));
+      }
+
+      @media (max-width: 640px){
+        .burger{width:calc(56*var(--t));height:calc(56*var(--t));gap:calc(6*var(--t))}
+        .burger i{width:calc(20*var(--t));height:calc(1.8*var(--t))}
+        .burger[aria-expanded="true"] i:first-child{transform:translateY(calc(3.9*var(--t))) rotate(45deg)}
+        .burger[aria-expanded="true"] i:last-child{transform:translateY(calc(-3.9*var(--t))) rotate(-45deg)}
+        .menu{
+          width:auto;left:calc(var(--pad)*var(--u));right:calc(var(--pad)*var(--u));
+          top:calc(var(--pad)*var(--u) + 68*var(--t));padding:calc(14*var(--t));
+          border-radius:calc(28*var(--t));
+        }
+        .menu .nav{
+          column-gap:calc(15*var(--t));row-gap:calc(15*var(--t));
+          padding:calc(6*var(--t)) calc(8*var(--t));
+        }
+        .menu .nav span{font-size:calc(18*var(--t))}
+        .menu .n-home{width:calc(21*var(--t));height:calc(22*var(--t))}
+        .menu .n-grid{width:calc(21*var(--t));height:calc(21*var(--t))}
+        .menu .cta{height:calc(60*var(--t));margin-top:calc(12*var(--t))}
+        .menu .cta span{left:calc(26*var(--t));top:calc(21*var(--t));font-size:calc(18*var(--t))}
+        .menu .cta .knob{
+          right:calc(7*var(--t));top:calc(6*var(--t));
+          width:calc(48*var(--t));height:calc(48*var(--t));
+        }
+      }
+    }
+
+    /* MODAL OVERLAY SYSTEM */
+    .jl-modal-layer{
+      position:fixed;inset:0;z-index:9999;
+      display:flex;align-items:center;justify-content:center;
+      padding:calc(16*var(--u));
+      background:rgba(2,12,33,0.65);
+      -webkit-backdrop-filter:blur(calc(24*var(--u)));backdrop-filter:blur(calc(24*var(--u)));
+      opacity:0;visibility:hidden;pointer-events:none;
+      transition:opacity .25s ease,visibility .25s ease;
+    }
+    .jl-modal-layer.is-open{
+      opacity:1;visibility:visible;pointer-events:auto;
+    }
+    .jl-modal-box{
+      position:relative;width:100%;max-width:960px;
+      max-height:min(90vh,820px);display:flex;flex-direction:column;
+      background:linear-gradient(135deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.16) 100%);
+      border:1px solid rgba(255,255,255,0.40);
+      border-top:1.5px solid rgba(255,255,255,0.85);
+      border-left:1.2px solid rgba(255,255,255,0.70);
+      border-radius:28px;
+      box-shadow:0 24px 60px -12px rgba(2,12,33,0.35),
+        inset 0 1.5px 1.5px rgba(255,255,255,0.85),
+        inset 0 -1px 1px rgba(255,255,255,0.20),
+        inset 0 0 24px rgba(255,255,255,0.08);
+      -webkit-backdrop-filter:blur(24px) saturate(160%);
+      backdrop-filter:blur(24px) saturate(160%);
+      overflow:hidden;
+      transform:translateY(18px) scale(0.98);
+      transition:transform .28s cubic-bezier(0.16,1,0.3,1);
+    }
+    .jl-modal-layer.is-open .jl-modal-box{
+      transform:translateY(0) scale(1);
+    }
+    .jl-modal-header{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px 24px;border-bottom:1px solid rgba(255,255,255,0.35);
+      background:linear-gradient(180deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.04) 100%);
+      -webkit-backdrop-filter:blur(14px);
+      backdrop-filter:blur(14px);
+      flex:none;gap:12px;
+    }
+    .jl-modal-tabs{
+      display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+    }
+    .jl-tab-btn{
+      padding:7px 14px;border-radius:999px;
+      border:1px solid rgba(255,255,255,0.40);
+      border-top:1.2px solid rgba(255,255,255,0.75);
+      background:linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.05) 100%);
+      -webkit-backdrop-filter:blur(10px) saturate(150%);
+      backdrop-filter:blur(10px) saturate(150%);
+      box-shadow:inset 0 1px 1px rgba(255,255,255,0.75), 0 2px 6px rgba(15,23,42,0.04);
+      color:#334155;font-size:13px;font-weight:550;
+      cursor:pointer;transition:all .18s ease;font-family:inherit;line-height:1.2;
+    }
+    .jl-tab-btn:hover{background:linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.10) 100%);color:#0F182F;border-color:rgba(255,255,255,0.65)}
+    .jl-tab-btn.is-active{
+      background:#0F1B31;color:#fff;border-color:#0F1B31;
+      box-shadow:0 2px 8px rgba(15,27,49,0.18);
+    }
+    .jl-tab-btn.is-highlight{
+      background:#0084FF;color:#fff;border-color:#0084FF;
+    }
+    .jl-tab-btn.is-highlight.is-active{
+      background:#0066CC;border-color:#0066CC;
+    }
+    .jl-modal-close{
+      width:36px;height:36px;border-radius:50%;
+      border:1px solid rgba(255,255,255,0.40);
+      border-top:1.2px solid rgba(255,255,255,0.80);
+      background:linear-gradient(135deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.06) 100%);
+      -webkit-backdrop-filter:blur(10px) saturate(150%);
+      backdrop-filter:blur(10px) saturate(150%);
+      box-shadow:inset 0 1px 1px rgba(255,255,255,0.8), 0 2px 8px rgba(15,23,42,0.05);
+      color:#475569;display:flex;align-items:center;
+      justify-content:center;cursor:pointer;flex:none;transition:all .18s;
+      font-size:20px;line-height:1;
+    }
+    .jl-modal-close:hover{background:linear-gradient(135deg, rgba(255,255,255,0.40) 0%, rgba(255,255,255,0.12) 100%);color:#0F182F}
+    .jl-modal-body{
+      overflow-y:auto;padding:24px;flex:1;
+      color:#0F182F;font-family:inherit;
+    }
+    .jl-tab-pane{display:none}
+    .jl-tab-pane.is-active{display:block}
+
+    /* Modal Component Typography & Cards */
+    .jl-pane-title{
+      font-size:26px;font-weight:700;letter-spacing:-0.03em;
+      color:#020C21;margin:0 0 6px 0;line-height:1.2;
+    }
+    .jl-pane-sub{
+      font-size:14.5px;color:#59627E;margin:0 0 20px 0;line-height:1.5;
+    }
+    .jl-grid-2{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;
+    }
+    .jl-grid-3{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;
+    }
+    .jl-card{
+      background:linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.12) 100%);
+      border:1px solid rgba(255,255,255,0.38);
+      border-top:1.2px solid rgba(255,255,255,0.80);
+      border-left:1px solid rgba(255,255,255,0.65);
+      border-radius:18px;
+      padding:18px;display:flex;flex-direction:column;gap:10px;
+      -webkit-backdrop-filter:blur(14px) saturate(160%);
+      backdrop-filter:blur(14px) saturate(160%);
+      box-shadow:inset 0 1.2px 1.2px rgba(255,255,255,0.75), inset 0 -0.5px 0.5px rgba(255,255,255,0.2), 0 8px 24px rgba(15,23,42,0.05);
+      transition:all .22s ease;
+      position:relative;overflow:hidden;
+    }
+    .jl-card::before{
+      content:'';position:absolute;inset:0;border-radius:inherit;
+      background:linear-gradient(125deg, rgba(255,255,255,0.36) 0%, rgba(255,255,255,0.06) 35%, transparent 65%);
+      pointer-events:none;
+    }
+    .jl-card:hover{
+      background:linear-gradient(135deg, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.20) 100%);
+      border-top-color:#fff;
+      transform:translateY(-2px);
+      box-shadow:inset 0 1.5px 1.5px #fff, 0 12px 30px rgba(0,132,255,0.12);
+    }
+    .jl-card-badge{
+      display:inline-block;padding:3px 10px;border-radius:999px;
+      font-size:11px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;
+      width:fit-content;
+      background:linear-gradient(135deg, rgba(239,246,255,0.30) 0%, rgba(239,246,255,0.08) 100%);
+      color:#0284C7;
+      border:1px solid rgba(186,230,253,0.45);
+      border-top:1.2px solid rgba(255,255,255,0.8);
+      -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+      box-shadow:inset 0 1px 1px rgba(255,255,255,0.75);
+    }
+    .jl-card-badge.tech{background:linear-gradient(135deg, rgba(240,253,244,0.30) 0%, rgba(240,253,244,0.08) 100%);color:#16A34A;border-color:rgba(187,247,208,0.5)}
+    .jl-card-badge.ai{background:linear-gradient(135deg, rgba(250,245,255,0.30) 0%, rgba(250,245,255,0.08) 100%);color:#9333EA;border-color:rgba(233,213,255,0.5)}
+    .jl-card-badge.web3{background:linear-gradient(135deg, rgba(255,247,237,0.30) 0%, rgba(255,247,237,0.08) 100%);color:#EA580C;border-color:rgba(254,215,170,0.5)}
+    .jl-card h4{font-size:16px;font-weight:650;color:#020C21;margin:0}
+    .jl-card p{font-size:13px;line-height:1.5;color:#475569;margin:0;flex:1}
+    .jl-tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+    .jl-tag-list span{
+      font-size:11.5px;padding:3px 9px;border-radius:6px;
+      background:linear-gradient(135deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.06) 100%);
+      color:#334155;
+      border:1px solid rgba(255,255,255,0.38);
+      border-top:1px solid rgba(255,255,255,0.75);
+      -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+    .jl-action-btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      gap:8px;padding:9px 16px;border-radius:999px;font-size:13px;
+      font-weight:600;font-family:inherit;text-decoration:none;cursor:pointer;
+      background:#0F1B31;color:#fff;border:none;transition:all .2s;
+      margin-top:6px;width:100%;
+    }
+    .jl-action-btn:hover{background:#0084FF;color:#fff}
+    .jl-action-btn.secondary{
+      background:linear-gradient(135deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.06) 100%);
+      color:#0F1B31;
+      border:1px solid rgba(255,255,255,0.40);
+      border-top:1.2px solid rgba(255,255,255,0.80);
+      -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+      box-shadow:inset 0 1px 1px rgba(255,255,255,0.75), 0 2px 6px rgba(15,23,42,0.04);
+    }
+    .jl-action-btn.secondary:hover{background:linear-gradient(135deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.12) 100%);border-top-color:#fff}
+
+    /* Form Styles */
+    .jl-form{display:flex;flex-direction:column;gap:14px}
+    .jl-form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:640px){.jl-form-row{grid-template-columns:1fr}}
+    .jl-field{display:flex;flex-direction:column;gap:6px}
+    .jl-field label{font-size:12.5px;font-weight:600;color:#1E293B}
+    .jl-field input,.jl-field select,.jl-field textarea{
+      width:100%;padding:10px 14px;
+      border:1px solid rgba(255,255,255,0.38);
+      border-top:1px solid rgba(255,255,255,0.70);
+      border-radius:10px;font-size:13.5px;font-family:inherit;
+      background:linear-gradient(135deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.05) 100%);
+      -webkit-backdrop-filter:blur(10px);
+      backdrop-filter:blur(10px);
+      color:#0F182F;outline:none;
+      box-shadow:inset 0 1px 2px rgba(15,23,42,0.04);
+      transition:all .18s ease;
+    }
+    .jl-field input:focus,.jl-field select:focus,.jl-field textarea:focus{
+      background:linear-gradient(135deg, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.10) 100%);
+      border-color:#0084FF;box-shadow:0 0 0 3px rgba(0,132,255,0.14), inset 0 1px 2px rgba(15,23,42,0.04);
+    }
+    .jl-pill-group{display:flex;flex-wrap:wrap;gap:8px}
+    .jl-pill-option{
+      padding:6px 14px;border-radius:999px;
+      border:1px solid rgba(255,255,255,0.38);
+      border-top:1px solid rgba(255,255,255,0.75);
+      background:linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.05) 100%);
+      -webkit-backdrop-filter:blur(10px);
+      backdrop-filter:blur(10px);
+      box-shadow:inset 0 1px 1px rgba(255,255,255,0.70), 0 2px 6px rgba(15,23,42,0.03);
+      font-size:12px;font-weight:500;color:#334155;
+      cursor:pointer;transition:all .18s cubic-bezier(0.16,1,0.3,1);
+    }
+    .jl-pill-option:hover{
+      background:linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.10) 100%);border-top-color:#fff;transform:translateY(-1px);
+    }
+    .jl-pill-option.selected{
+      background:#0F1B31 !important;color:#fff !important;border-color:#0F1B31 !important;
+      box-shadow:0 4px 12px rgba(15,27,49,0.22);transform:none;
+    }
+    .jl-contact-links{
+      display:flex;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.35);flex-wrap:wrap;
+    }
+    .jl-contact-item{
+      display:flex;align-items:center;gap:8px;font-size:13px;color:#334155;
+      text-decoration:none;padding:6px 14px;border-radius:10px;
+      background:linear-gradient(135deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.06) 100%);
+      border:1px solid rgba(255,255,255,0.38);
+      border-top:1px solid rgba(255,255,255,0.75);
+      -webkit-backdrop-filter:blur(10px);
+      backdrop-filter:blur(10px);
+      box-shadow:inset 0 1px 1px rgba(255,255,255,0.70), 0 2px 6px rgba(15,23,42,0.03);
+      transition:all .18s ease;
+    }
+    .jl-contact-item:hover{
+      background:linear-gradient(135deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.10) 100%);color:#0084FF;border-top-color:#fff;
+      box-shadow:0 4px 12px rgba(0,132,255,0.12);
+    }
+
+    @media (max-width: 640px){
+      .jl-modal-header{padding:12px 16px;flex-direction:row}
+      .jl-modal-tabs{gap:4px}
+      .jl-tab-btn{padding:5px 10px;font-size:12px}
+      .jl-modal-body{padding:16px}
+      .jl-pane-title{font-size:20px}
+    }
+
+    /* SCROLLABLE ARCHITECTURE & SECTIONS - HARMONIZED WITH HERO PALETTE */
+    .jl-scroll-content{
+      position:relative;
+      width:100%;
+      background:linear-gradient(180deg, #E6EDF6 0%, #EDF3FA 15%, #E5EDF7 45%, #E9EFF8 75%, #DEE6F2 100%);
+      background-image:
+        radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.95) 0%, transparent 45%),
+        radial-gradient(circle at 88% 26%, rgba(56, 189, 248, 0.16) 0%, transparent 42%),
+        radial-gradient(circle at 10% 55%, rgba(195, 215, 240, 0.50) 0%, transparent 45%),
+        radial-gradient(circle at 92% 76%, rgba(74, 120, 176, 0.14) 0%, transparent 45%),
+        radial-gradient(circle at 50% 95%, rgba(255, 255, 255, 0.85) 0%, transparent 50%);
+      color:var(--ink-soft);
+      z-index:10;
+    }
+    .jl-sec-wrap{
+      padding:96px 24px;
+      max-width:1240px;
+      margin:0 auto;
+    }
+    .jl-sec-border{
+      border-top:1px solid rgba(167, 180, 198, 0.38);
+      position:relative;
+    }
+    .jl-sec-border::before{
+      content:'';position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+      width:260px;height:1px;
+      background:linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.55), transparent);
+    }
+    .jl-badge-tag{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:6px 16px;border-radius:999px;
+      font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.14) 100%);
+      color:#0A2F60;
+      border:1px solid rgba(255, 255, 255, 0.40);
+      border-top:1.2px solid rgba(255, 255, 255, 0.85);
+      border-left:1px solid rgba(255, 255, 255, 0.70);
+      -webkit-backdrop-filter:blur(10px) saturate(160%);
+      backdrop-filter:blur(10px) saturate(160%);
+      box-shadow:inset 0 1.2px 1.2px rgba(255, 255, 255, 0.80),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.20),
+        0 4px 14px rgba(15, 23, 42, 0.05);
+      margin-bottom:16px;
+      position:relative;overflow:hidden;
+    }
+    .jl-badge-tag::before{
+      content:'';position:absolute;inset:0;border-radius:inherit;
+      background:linear-gradient(120deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.05) 35%, transparent 65%);
+      pointer-events:none;
+    }
+    .jl-sec-h2{
+      font-size:clamp(32px, 3.8vw, 50px);
+      font-weight:650;
+      letter-spacing:-0.035em;
+      line-height:1.15;
+      color:var(--ink);
+      margin:0 0 16px 0;
+    }
+    .jl-sec-p{
+      font-size:clamp(16px, 1.35vw, 18.5px);
+      line-height:1.65;
+      color:var(--muted2);
+      max-width:760px;
+      margin:0 0 48px 0;
+    }
+
+    /* Sticky Floating Bar */
+    .jl-sticky-bar{
+      position:fixed;
+      top:16px;
+      left:50%;
+      transform:translateX(-50%) translateY(-100px);
+      width:calc(100% - 32px);
+      max-width:1080px;
+      height:58px;
+      padding:0 16px 0 20px;
+      border-radius:999px;
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.14) 100%);
+      border:1px solid rgba(255, 255, 255, 0.40);
+      border-top:1.2px solid rgba(255, 255, 255, 0.80);
+      border-left:1px solid rgba(255, 255, 255, 0.65);
+      -webkit-backdrop-filter:blur(14px) saturate(160%);
+      backdrop-filter:blur(14px) saturate(160%);
+      box-shadow:inset 0 1.5px 1.5px rgba(255, 255, 255, 0.75),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.20),
+        inset 0 0 20px rgba(255, 255, 255, 0.08),
+        0 0 0 1px rgba(120, 145, 180, 0.14),
+        0 12px 32px -4px rgba(15, 23, 42, 0.10);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      z-index:900;
+      opacity:0;
+      visibility:hidden;
+      overflow:hidden;
+      transition:transform .3s cubic-bezier(0.16,1,0.3,1), opacity .3s, visibility .3s;
+    }
+    .jl-sticky-bar::before{
+      content:'';position:absolute;inset:0;border-radius:inherit;
+      background:linear-gradient(120deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.05) 30%, transparent 60%);
+      pointer-events:none;
+    }
+    .jl-sticky-bar.is-visible{
+      transform:translateX(-50%) translateY(0);
+      opacity:1;
+      visibility:visible;
+    }
+    .jl-sticky-brand{
+      display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px;
+    }
+    .jl-sticky-brand svg{width:28px;height:28px;flex:none}
+    .jl-sticky-links{
+      display:flex;align-items:center;gap:22px;
+    }
+    @media(max-width:820px){.jl-sticky-links{display:none}}
+    .jl-sticky-links a{
+      color:#39455F;text-decoration:none;font-size:13.5px;font-weight:500;transition:color .18s;
+    }
+    .jl-sticky-links a:hover{color:#0084FF}
+    .jl-sticky-cta{
+      padding:8px 18px;border-radius:999px;background:var(--cta);color:#fff;text-decoration:none;
+      font-size:13px;font-weight:600;transition:all .2s;display:inline-flex;align-items:center;gap:6px;
+    }
+    .jl-sticky-cta:hover{background:#0084FF;box-shadow:0 6px 18px rgba(0, 132, 255, 0.25)}
+
+    /* SLIM SCROLL PROGRESS BARS */
+    .jl-global-progress{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:3px;
+      background:rgba(230, 237, 246, 0.5);
+      z-index:9999;
+      pointer-events:none;
+    }
+    .jl-global-progress-bar{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg, #38BDF8 0%, #0084FF 50%, #004AD6 100%);
+      box-shadow:0 0 10px rgba(0, 132, 255, 0.8), 0 0 3px rgba(56, 189, 248, 0.9);
+      transition:width 0.04s linear;
+      border-top-right-radius:999px;
+      border-bottom-right-radius:999px;
+    }
+    .jl-header-progress-track{
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:2.5px;
+      background:rgba(120, 145, 180, 0.16);
+      pointer-events:none;
+      z-index:50;
+      overflow:hidden;
+    }
+    .jl-header-progress-bar{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg, #38BDF8 0%, #0084FF 60%, #004AD6 100%);
+      box-shadow:0 0 8px rgba(0, 132, 255, 0.75);
+      transition:width 0.04s linear;
+    }
+
+    /* Glass Cards Grid - Matches Hero Panel & Meet Capsules */
+    .jl-dark-card{
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.04) 45%, rgba(255, 255, 255, 0.01) 65%, rgba(255, 255, 255, 0.12) 100%);
+      border:1px solid rgba(255, 255, 255, 0.40);
+      border-top:1.5px solid rgba(255, 255, 255, 0.80);
+      border-left:1.2px solid rgba(255, 255, 255, 0.65);
+      border-radius:24px;
+      padding:32px 28px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      position:relative;
+      overflow:hidden;
+      transition:all .28s cubic-bezier(0.16,1,0.3,1);
+      backdrop-filter:blur(14px) saturate(160%);
+      -webkit-backdrop-filter:blur(14px) saturate(160%);
+      box-shadow:inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.75),
+        inset 0 -1px 1px 0 rgba(255, 255, 255, 0.20),
+        inset 0 0 24px 0 rgba(255, 255, 255, 0.08),
+        0 0 0 1px rgba(120, 145, 180, 0.12),
+        0 14px 36px -6px rgba(15, 23, 42, 0.08);
+    }
+    .jl-dark-card::before{
+      content:'';position:absolute;inset:0;border-radius:inherit;
+      background:linear-gradient(125deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.06) 35%, transparent 65%);
+      pointer-events:none;
+    }
+    .jl-dark-card:hover{
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.08) 45%, rgba(255, 255, 255, 0.04) 65%, rgba(255, 255, 255, 0.18) 100%);
+      border-top-color:#fff;
+      transform:translateY(-5px);
+      box-shadow:inset 0 2px 2px 0 #fff,
+        inset 0 0 28px 0 rgba(255, 255, 255, 0.15),
+        0 0 0 1.5px rgba(0, 132, 255, 0.28),
+        0 20px 48px -8px rgba(15, 23, 42, 0.14);
+    }
+    .jl-dark-card h3,.jl-dark-card h4{
+      font-size:21px;font-weight:650;color:var(--ink);margin:0;letter-spacing:-0.025em;line-height:1.25;
+    }
+    .jl-dark-card p{
+      font-size:14.5px;line-height:1.62;color:var(--muted2);margin:0;flex:1;
+    }
+    .jl-dark-pill{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:4px 12px;border-radius:999px;font-size:11.5px;font-weight:650;letter-spacing:0.04em;text-transform:uppercase;
+      width:fit-content;
+      -webkit-backdrop-filter:blur(10px) saturate(160%);
+      backdrop-filter:blur(10px) saturate(160%);
+      box-shadow:inset 0 1px 1px rgba(255, 255, 255, 0.75), inset 0 -0.5px 0.5px rgba(255, 255, 255, 0.2), 0 2px 6px rgba(15, 23, 42, 0.04);
+      position:relative;overflow:hidden;
+    }
+    .jl-dark-pill.blue{background:linear-gradient(135deg, rgba(0, 132, 255, 0.14) 0%, rgba(0, 132, 255, 0.04) 100%);color:#0055B3;border:1px solid rgba(0, 132, 255, 0.35);border-top:1.2px solid rgba(255, 255, 255, 0.75)}
+    .jl-dark-pill.green{background:linear-gradient(135deg, rgba(22, 163, 74, 0.12) 0%, rgba(22, 163, 74, 0.03) 100%);color:#15803D;border:1px solid rgba(22, 163, 74, 0.32);border-top:1.2px solid rgba(255, 255, 255, 0.75)}
+    .jl-dark-pill.purple{background:linear-gradient(135deg, rgba(147, 51, 234, 0.12) 0%, rgba(147, 51, 234, 0.03) 100%);color:#6B21A8;border:1px solid rgba(147, 51, 234, 0.32);border-top:1.2px solid rgba(255, 255, 255, 0.75)}
+    .jl-dark-pill.orange{background:linear-gradient(135deg, rgba(234, 88, 12, 0.12) 0%, rgba(234, 88, 12, 0.03) 100%);color:#C2410C;border:1px solid rgba(234, 88, 12, 0.32);border-top:1.2px solid rgba(255, 255, 255, 0.75)}
+
+    .jl-dark-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+    .jl-dark-tags span{
+      font-size:12px;padding:5px 11px;border-radius:8px;
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0.14) 100%);
+      color:#1E2D47;
+      border:1px solid rgba(255, 255, 255, 0.38);
+      border-top:1px solid rgba(255, 255, 255, 0.75);
+      -webkit-backdrop-filter:blur(8px);
+      backdrop-filter:blur(8px);
+      box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 2px 6px rgba(15, 23, 42, 0.03);
+    }
+    .jl-dark-btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:11px 20px;border-radius:999px;font-size:13.5px;font-weight:600;
+      font-family:inherit;text-decoration:none;cursor:pointer;
+      background:var(--cta);color:#fff;border:none;transition:all .2s;
+      margin-top:10px;width:100%;
+    }
+    .jl-dark-btn:hover{background:#0084FF;box-shadow:0 8px 24px rgba(0, 132, 255, 0.28);color:#fff}
+    .jl-dark-btn.ghost{
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.06) 100%);
+      color:var(--cta);
+      border:1px solid rgba(255, 255, 255, 0.40);
+      border-top:1.2px solid rgba(255, 255, 255, 0.80);
+      -webkit-backdrop-filter:blur(12px) saturate(150%);
+      backdrop-filter:blur(12px) saturate(150%);
+      box-shadow:inset 0 1px 1px rgba(255, 255, 255, 0.75), 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+    .jl-dark-btn.ghost:hover{background:linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.12) 100%);border-top-color:#fff;color:#0084FF}
+
+    /* REVEAL ANIMATIONS (INTERSECTION OBSERVER) */
+    .jl-reveal,
+    .jl-reveal-header,
+    .jl-reveal-item,
+    .jl-reveal-block,
+    .reveal,
+    .reveal-header,
+    .reveal-item,
+    .reveal-block,
+    .service-card,
+    .solution-card {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .jl-reveal.is-revealed,
+    .jl-reveal-header.is-revealed,
+    .jl-reveal-item.is-revealed,
+    .jl-reveal-block.is-revealed,
+    .reveal.is-revealed,
+    .reveal-header.is-revealed,
+    .reveal-item.is-revealed,
+    .reveal-block.is-revealed,
+    .service-card.is-revealed,
+    .solution-card.is-revealed,
+    .jl-reveal.active,
+    .jl-reveal-header.active,
+    .jl-reveal-item.active,
+    .jl-reveal-block.active,
+    .reveal.active,
+    .reveal-header.active,
+    .reveal-item.active,
+    .reveal-block.active,
+    .service-card.active,
+    .solution-card.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered cascading reveal inside card grids */
+    .jl-reveal-stagger > .jl-reveal-item:nth-child(1),
+    .jl-reveal-stagger > .reveal-item:nth-child(1),
+    .jl-reveal-stagger > .service-card:nth-child(1),
+    .reveal-stagger > .jl-reveal-item:nth-child(1),
+    .reveal-stagger > .reveal-item:nth-child(1),
+    .reveal-stagger > .service-card:nth-child(1) { transition-delay: 0.04s; }
+
+    .jl-reveal-stagger > .jl-reveal-item:nth-child(2),
+    .jl-reveal-stagger > .reveal-item:nth-child(2),
+    .jl-reveal-stagger > .service-card:nth-child(2),
+    .reveal-stagger > .jl-reveal-item:nth-child(2),
+    .reveal-stagger > .reveal-item:nth-child(2),
+    .reveal-stagger > .service-card:nth-child(2) { transition-delay: 0.12s; }
+
+    .jl-reveal-stagger > .jl-reveal-item:nth-child(3),
+    .jl-reveal-stagger > .reveal-item:nth-child(3),
+    .jl-reveal-stagger > .service-card:nth-child(3),
+    .reveal-stagger > .jl-reveal-item:nth-child(3),
+    .reveal-stagger > .reveal-item:nth-child(3),
+    .reveal-stagger > .service-card:nth-child(3) { transition-delay: 0.20s; }
+
+    .jl-reveal-stagger > .jl-reveal-item:nth-child(4),
+    .jl-reveal-stagger > .reveal-item:nth-child(4),
+    .jl-reveal-stagger > .service-card:nth-child(4),
+    .reveal-stagger > .jl-reveal-item:nth-child(4),
+    .reveal-stagger > .reveal-item:nth-child(4),
+    .reveal-stagger > .service-card:nth-child(4) { transition-delay: 0.28s; }
+
+    .jl-reveal-stagger > .jl-reveal-item:nth-child(5),
+    .jl-reveal-stagger > .reveal-item:nth-child(5),
+    .jl-reveal-stagger > .service-card:nth-child(5),
+    .reveal-stagger > .jl-reveal-item:nth-child(5),
+    .reveal-stagger > .reveal-item:nth-child(5),
+    .reveal-stagger > .service-card:nth-child(5) { transition-delay: 0.36s; }
+
+    .jl-reveal-stagger > .jl-reveal-item:nth-child(6),
+    .jl-reveal-stagger > .reveal-item:nth-child(6),
+    .jl-reveal-stagger > .service-card:nth-child(6),
+    .reveal-stagger > .jl-reveal-item:nth-child(6),
+    .reveal-stagger > .reveal-item:nth-child(6),
+    .reveal-stagger > .service-card:nth-child(6) { transition-delay: 0.44s; }
+
+    .jl-reveal-stagger > .jl-reveal-item:nth-child(7),
+    .jl-reveal-stagger > .reveal-item:nth-child(7),
+    .jl-reveal-stagger > .service-card:nth-child(7),
+    .reveal-stagger > .jl-reveal-item:nth-child(7),
+    .reveal-stagger > .reveal-item:nth-child(7),
+    .reveal-stagger > .service-card:nth-child(7) { transition-delay: 0.52s; }
+
+    .jl-reveal-stagger > .jl-reveal-item:nth-child(8),
+    .jl-reveal-stagger > .reveal-item:nth-child(8),
+    .jl-reveal-stagger > .service-card:nth-child(8),
+    .reveal-stagger > .jl-reveal-item:nth-child(8),
+    .reveal-stagger > .reveal-item:nth-child(8),
+    .reveal-stagger > .service-card:nth-child(8) { transition-delay: 0.60s; }
+
+    /* Interactive hover enhancement on revealed cards */
+    .jl-dark-card.is-revealed:hover,
+    .jl-dark-card.active:hover {
+      transform: translateY(-6px);
+      transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), background 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+      transition-delay: 0s !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .jl-reveal,
+      .jl-reveal-header,
+      .jl-reveal-item,
+      .jl-reveal-block,
+      .reveal,
+      .reveal-header,
+      .reveal-item,
+      .reveal-block,
+      .service-card,
+      .solution-card {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* Process Flow */
+    .jl-process-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px;
+    }
+    .jl-process-step{
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%);
+      border:1px solid rgba(255, 255, 255, 0.40);
+      border-top:1.5px solid rgba(255, 255, 255, 0.80);
+      border-left:1.2px solid rgba(255, 255, 255, 0.65);
+      border-radius:20px;padding:28px 22px;display:flex;flex-direction:column;gap:12px;
+      position:relative;
+      overflow:hidden;
+      box-shadow:inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.75),
+        inset 0 -1px 1px 0 rgba(255, 255, 255, 0.20),
+        inset 0 0 20px 0 rgba(255, 255, 255, 0.08),
+        0 0 0 1px rgba(120, 145, 180, 0.12),
+        0 12px 32px -4px rgba(15, 23, 42, 0.07);
+      backdrop-filter:blur(14px) saturate(160%);
+      -webkit-backdrop-filter:blur(14px) saturate(160%);
+      transition:all .25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .jl-process-step::before{
+      content:'';position:absolute;inset:0;border-radius:inherit;
+      background:linear-gradient(125deg, rgba(255, 255, 255, 0.36) 0%, rgba(255, 255, 255, 0.06) 35%, transparent 65%);
+      pointer-events:none;
+    }
+    .jl-process-step:hover{
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.18) 100%);
+      transform:translateY(-4px);
+      border-top-color:#fff;
+      box-shadow:inset 0 2px 2px #fff, 0 18px 42px -6px rgba(15, 23, 42, 0.12), 0 0 0 1.5px rgba(0, 132, 255, 0.26);
+    }
+    .jl-step-num{
+      font-size:32px;font-weight:800;color:var(--accent);line-height:1;font-family:monospace;
+    }
+    .jl-process-step h4{font-size:18px;font-weight:650;color:var(--ink);margin:0}
+    .jl-process-step p{font-size:13.5px;line-height:1.55;color:var(--muted2);margin:0}
+    .jl-step-num{
+      font-size:32px;font-weight:800;color:var(--accent);line-height:1;font-family:monospace;
+    }
+    .jl-process-step h4{font-size:18px;font-weight:650;color:var(--ink);margin:0}
+    .jl-process-step p{font-size:13.5px;line-height:1.55;color:var(--muted2);margin:0}
+
+    /* Footer */
+    .jl-main-footer{
+      background:#0B162C;border-top:1px solid rgba(74, 120, 176, 0.25);
+      padding:72px 24px 36px 24px;color:#94A3B8;font-size:13.5px;
+    }
+    .jl-footer-inner{
+      max-width:1240px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+      gap:48px;margin-bottom:48px;
+    }
+    @media(max-width:880px){.jl-footer-inner{grid-template-columns:1fr 1fr;gap:36px}}
+    @media(max-width:540px){.jl-footer-inner{grid-template-columns:1fr;gap:30px}}
+    .jl-footer-col h5{color:#fff;font-size:14.5px;font-weight:650;margin:0 0 16px 0;letter-spacing:-0.01em}
+    .jl-footer-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+    .jl-footer-col ul a{color:#94A3B8;text-decoration:none;transition:color .18s}
+    .jl-footer-col ul a:hover{color:#38BDF8}
+    .jl-footer-bottom{
+      max-width:1240px;margin:0 auto;padding-top:28px;border-top:1px solid rgba(255, 255, 255, 0.08);
+      display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;
+      font-size:12.5px;color:#64748B;
+    }
+
+    /* ===================================================
+       JL TECHNOLOGIES AI GEMINI CHATBOT (GLASSMORPHIC)
+       =================================================== */
+    .jl-chat-trigger{
+      position:fixed;
+      bottom:24px;
+      right:24px;
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.20) 100%);
+      border:1.2px solid rgba(255, 255, 255, 0.55);
+      border-top:1.8px solid rgba(255, 255, 255, 0.95);
+      border-left:1.5px solid rgba(255, 255, 255, 0.75);
+      -webkit-backdrop-filter:blur(16px) saturate(160%);
+      backdrop-filter:blur(16px) saturate(160%);
+      box-shadow:inset 0 1.5px 1.5px rgba(255, 255, 255, 0.85),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.20),
+        0 10px 30px rgba(0, 132, 255, 0.28),
+        0 4px 12px rgba(15, 23, 42, 0.15);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index:950;
+      transition:all .28s cubic-bezier(0.16, 1, 0.3, 1);
+      color:#0084FF;
+    }
+    .jl-chat-trigger:hover{
+      transform:scale(1.08) translateY(-2px);
+      box-shadow:inset 0 2px 2px #fff,
+        0 14px 40px rgba(0, 132, 255, 0.38),
+        0 6px 16px rgba(15, 23, 42, 0.20);
+      border-top-color:#fff;
+    }
+    .jl-chat-trigger svg{
+      width:28px;
+      height:28px;
+      transition:transform .25s ease;
+    }
+    .jl-chat-trigger.is-active svg.icon-chat{display:none}
+    .jl-chat-trigger.is-active svg.icon-close{display:block}
+    .jl-chat-trigger:not(.is-active) svg.icon-chat{display:block}
+    .jl-chat-trigger:not(.is-active) svg.icon-close{display:none}
+
+    /* Trigger Online Pulse Dot */
+    .jl-chat-pulse{
+      position:absolute;
+      top:2px;
+      right:2px;
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      background:#10B981;
+      border:2px solid #fff;
+      box-shadow:0 0 8px rgba(16, 185, 129, 0.8);
+    }
+    .jl-chat-pulse::after{
+      content:'';
+      position:absolute;
+      inset:-3px;
+      border-radius:50%;
+      border:1.5px solid #10B981;
+      animation:jlPulse 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    }
+    @keyframes jlPulse{
+      0%{transform:scale(0.8);opacity:1}
+      100%{transform:scale(2.2);opacity:0}
+    }
+
+    /* Trigger Floating Tooltip Pill */
+    .jl-chat-tooltip{
+      position:absolute;
+      right:72px;
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.45) 100%);
+      border:1px solid rgba(255, 255, 255, 0.65);
+      border-top:1.2px solid rgba(255, 255, 255, 0.95);
+      -webkit-backdrop-filter:blur(14px) saturate(160%);
+      backdrop-filter:blur(14px) saturate(160%);
+      box-shadow:0 8px 24px rgba(15, 23, 42, 0.12), inset 0 1px 1px #fff;
+      padding:7px 14px;
+      border-radius:999px;
+      font-size:12.5px;
+      font-weight:600;
+      color:#0F182F;
+      white-space:nowrap;
+      pointer-events:none;
+      opacity:0;
+      transform:translateX(10px);
+      transition:all .22s cubic-bezier(0.16, 1, 0.3, 1);
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .jl-chat-trigger:hover .jl-chat-tooltip{
+      opacity:1;
+      transform:translateX(0);
+    }
+
+    /* Chat Window Container */
+    .jl-chat-window{
+      position:fixed;
+      bottom:96px;
+      right:24px;
+      width:400px;
+      max-width:calc(100vw - 32px);
+      height:600px;
+      max-height:calc(100vh - 120px);
+      border-radius:26px;
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.14) 50%, rgba(255, 255, 255, 0.28) 100%);
+      border:1px solid rgba(255, 255, 255, 0.50);
+      border-top:1.5px solid rgba(255, 255, 255, 0.95);
+      border-left:1.2px solid rgba(255, 255, 255, 0.80);
+      -webkit-backdrop-filter:blur(36px) saturate(160%);
+      backdrop-filter:blur(36px) saturate(160%);
+      box-shadow:0 24px 60px -12px rgba(2, 12, 33, 0.35),
+        inset 0 1.5px 1.5px rgba(255, 255, 255, 0.90),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.20),
+        0 0 0 1px rgba(120, 145, 180, 0.18);
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+      z-index:960;
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transform:translateY(24px) scale(0.95);
+      transform-origin:bottom right;
+      transition:all .28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .jl-chat-window.is-open{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+      transform:translateY(0) scale(1);
+    }
+
+    /* Chat Header */
+    .jl-chat-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:16px 18px;
+      background:linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.15) 100%);
+      border-bottom:1px solid rgba(255, 255, 255, 0.35);
+      -webkit-backdrop-filter:blur(14px);
+      backdrop-filter:blur(14px);
+      flex:none;
+    }
+    .jl-chat-header-profile{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .jl-chat-avatar{
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      background:linear-gradient(135deg, #0084FF 0%, #004AD6 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      position:relative;
+      box-shadow:0 4px 12px rgba(0, 132, 255, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+      flex:none;
+    }
+    .jl-chat-avatar svg{width:20px;height:20px}
+    .jl-chat-avatar-status{
+      position:absolute;
+      bottom:0;
+      right:0;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#10B981;
+      border:2px solid #fff;
+    }
+    .jl-chat-title{
+      font-size:14.5px;
+      font-weight:650;
+      color:var(--ink);
+      line-height:1.2;
+    }
+    .jl-chat-status{
+      font-size:11.5px;
+      color:#10B981;
+      display:flex;
+      align-items:center;
+      gap:4px;
+      font-weight:550;
+      margin-top:2px;
+    }
+    .jl-chat-header-actions{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .jl-chat-btn-icon{
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      border:1px solid rgba(255, 255, 255, 0.50);
+      border-top:1px solid rgba(255, 255, 255, 0.90);
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.10) 100%);
+      color:#475569;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:all .18s ease;
+      font-size:14px;
+    }
+    .jl-chat-btn-icon:hover{
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.20) 100%);
+      color:#0F182F;
+      transform:scale(1.05);
+    }
+
+    /* Chat Messages Body */
+    .jl-chat-body{
+      flex:1;
+      overflow-y:auto;
+      padding:18px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      scroll-behavior:smooth;
+    }
+    .jl-chat-body::-webkit-scrollbar{width:5px}
+    .jl-chat-body::-webkit-scrollbar-thumb{background:rgba(120, 145, 180, 0.25);border-radius:999px}
+
+    /* Message Bubbles */
+    .jl-msg-row{
+      display:flex;
+      gap:10px;
+      width:100%;
+    }
+    .jl-msg-row.user{
+      justify-content:flex-end;
+    }
+    .jl-msg-row.bot{
+      justify-content:flex-start;
+    }
+    .jl-msg-bubble{
+      max-width:86%;
+      padding:12px 16px;
+      font-size:13.5px;
+      line-height:1.55;
+      word-break:break-word;
+    }
+    .jl-msg-row.user .jl-msg-bubble{
+      background:var(--cta);
+      color:#fff;
+      border-radius:18px 18px 4px 18px;
+      box-shadow:0 4px 16px rgba(15, 27, 49, 0.18);
+    }
+    .jl-msg-row.bot .jl-msg-bubble{
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.65) 100%);
+      border:1px solid rgba(255, 255, 255, 0.90);
+      border-top:1.2px solid rgba(255, 255, 255, 1);
+      color:#0F182F;
+      border-radius:18px 18px 18px 4px;
+      box-shadow:inset 0 1px 1px rgba(255, 255, 255, 0.9), 0 4px 16px rgba(15, 23, 42, 0.05);
+      -webkit-backdrop-filter:blur(14px);
+      backdrop-filter:blur(14px);
+    }
+
+    /* Referral action box in message */
+    .jl-chat-referral-box{
+      margin-top:12px;
+      padding:12px;
+      border-radius:14px;
+      background:linear-gradient(135deg, rgba(239, 246, 255, 0.85) 0%, rgba(240, 253, 244, 0.65) 100%);
+      border:1px solid rgba(186, 230, 253, 0.75);
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .jl-chat-referral-title{
+      font-size:12px;
+      font-weight:700;
+      color:#0369A1;
+      text-transform:uppercase;
+      letter-spacing:0.04em;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .jl-chat-referral-links{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .jl-chat-referral-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:12.5px;
+      font-weight:600;
+      text-decoration:none;
+      transition:all .18s ease;
+    }
+    .jl-chat-referral-btn.wa{
+      background:#16A34A;
+      color:#fff;
+      box-shadow:0 3px 10px rgba(22, 163, 74, 0.25);
+    }
+    .jl-chat-referral-btn.wa:hover{
+      background:#15803D;
+      transform:translateY(-1px);
+    }
+    .jl-chat-referral-btn.email{
+      background:#0F1B31;
+      color:#fff;
+      box-shadow:0 3px 10px rgba(15, 27, 49, 0.20);
+    }
+    .jl-chat-referral-btn.email:hover{
+      background:#0084FF;
+      transform:translateY(-1px);
+    }
+
+    /* Suggestion Chips */
+    .jl-chat-suggestions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top:6px;
+    }
+    .jl-chat-chip{
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:550;
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.60) 0%, rgba(255, 255, 255, 0.25) 100%);
+      border:1px solid rgba(255, 255, 255, 0.65);
+      border-top:1px solid rgba(255, 255, 255, 0.95);
+      color:#1E293B;
+      cursor:pointer;
+      transition:all .18s ease;
+      line-height:1.2;
+    }
+    .jl-chat-chip:hover{
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.50) 100%);
+      color:#0084FF;
+      transform:translateY(-1px);
+      border-color:#fff;
+    }
+
+    /* Typing Indicator */
+    .jl-chat-typing{
+      display:none;
+      align-items:center;
+      gap:4px;
+      padding:10px 14px;
+      background:rgba(255, 255, 255, 0.75);
+      border:1px solid rgba(255, 255, 255, 0.90);
+      border-radius:18px 18px 18px 4px;
+      width:fit-content;
+    }
+    .jl-chat-typing.is-visible{
+      display:flex;
+    }
+    .jl-chat-typing span{
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background:#0084FF;
+      animation:jlDot 1.4s infinite ease-in-out both;
+    }
+    .jl-chat-typing span:nth-child(1){animation-delay:-0.32s}
+    .jl-chat-typing span:nth-child(2){animation-delay:-0.16s}
+    @keyframes jlDot{
+      0%, 80%, 100%{transform:scale(0.4);opacity:0.4}
+      40%{transform:scale(1);opacity:1}
+    }
+
+    /* Chat Input Form */
+    .jl-chat-footer{
+      padding:12px 14px;
+      background:linear-gradient(180deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.45) 100%);
+      border-top:1px solid rgba(255, 255, 255, 0.35);
+      -webkit-backdrop-filter:blur(16px);
+      backdrop-filter:blur(16px);
+      flex:none;
+    }
+    .jl-chat-form{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .jl-chat-input{
+      flex:1;
+      padding:11px 16px;
+      border-radius:999px;
+      border:1px solid rgba(255, 255, 255, 0.55);
+      border-top:1.2px solid rgba(255, 255, 255, 0.90);
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.60) 0%, rgba(255, 255, 255, 0.25) 100%);
+      font-size:13.5px;
+      font-family:inherit;
+      color:#0F182F;
+      outline:none;
+      transition:all .18s ease;
+      box-shadow:inset 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+    .jl-chat-input:focus{
+      background:linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.45) 100%);
+      border-color:#0084FF;
+      box-shadow:0 0 0 3px rgba(0, 132, 255, 0.16);
+    }
+    .jl-chat-send{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background:linear-gradient(135deg, #0084FF 0%, #004AD6 100%);
+      color:#fff;
+      border:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:all .2s ease;
+      flex:none;
+      box-shadow:0 4px 14px rgba(0, 132, 255, 0.35);
+    }
+    .jl-chat-send:hover{
+      transform:scale(1.06);
+      box-shadow:0 6px 18px rgba(0, 132, 255, 0.45);
+    }
+    .jl-chat-send:disabled{
+      opacity:0.5;
+      cursor:not-allowed;
+      transform:none;
+    }
+    .jl-chat-disclaimer{
+      font-size:11px;
+      color:#64748B;
+      text-align:center;
+      margin-top:6px;
+    }
+
+    @media (max-width: 480px){
+      .jl-chat-window{
+        bottom:16px;
+        right:12px;
+        width:calc(100vw - 24px);
+        height:calc(100vh - 32px);
+        max-height:none;
+        border-radius:20px;
+      }
+      .jl-chat-trigger{
+        bottom:16px;
+        right:16px;
+        width:54px;
+        height:54px;
+      }
+    }
+  </style>
+  <script>
+    (function(){
+      var d = document.documentElement;
+      if(!('animate' in Element.prototype)) return;
+      if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      d.classList.add('pre');
+      setTimeout(function(){ d.classList.remove('pre'); }, 4000);
+    })();
+  </script>
+</head>
+<body>
+  <!-- SLIM GLOBAL SCROLL PROGRESS BAR -->
+  <div id="jl-global-progress" class="jl-global-progress" role="progressbar" aria-label="Page progression" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <div id="jl-global-progress-bar" class="jl-global-progress-bar"></div>
+  </div>
+
+  <div class="page">
+    <div class="hero-stage" id="hero">
+      <div class="card">
+      <video class="bg" autoplay muted loop playsinline preload="auto" disablepictureinpicture
+             aria-hidden="true"
+             poster="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260912_105822_bf7c2d53-9957-4521-bbbf-7c1ab7a70130.png"
+             src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260912_105953_21ad8049-9088-4a00-bad3-aee6b5575a2b.mp4"></video>
+      <div class="tint"></div>
+      <div class="stack">
+        <div class="row">
+          <a class="brand l t" style="--x:68;--y:47" href="#">
+            <!-- Official JL Technologies 3D Emblem -->
+            <svg class="mark" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="jl-m-blue-f" x1="20" y1="20" x2="80" y2="120" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#38BDF8" />
+                  <stop offset="40%" stopColor="#0084FF" />
+                  <stop offset="100%" stopColor="#004AD6" />
+                </linearGradient>
+                <linearGradient id="jl-m-blue-s" x1="40" y1="40" x2="90" y2="140" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#0284C7" />
+                  <stop offset="60%" stopColor="#004AD6" />
+                  <stop offset="100%" stopColor="#00216B" />
+                </linearGradient>
+                <linearGradient id="jl-m-silver-f" x1="70" y1="20" x2="130" y2="120" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#FFFFFF" />
+                  <stop offset="45%" stopColor="#E2E8F0" />
+                  <stop offset="100%" stopColor="#94A3B8" />
+                </linearGradient>
+                <linearGradient id="jl-m-silver-s" x1="80" y1="20" x2="140" y2="130" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#CBD5E1" />
+                  <stop offset="50%" stopColor="#64748B" />
+                  <stop offset="100%" stopColor="#334155" />
+                </linearGradient>
+                <linearGradient id="jl-m-orbit" x1="10" y1="110" x2="150" y2="60" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#0066FF" stopOpacity="0.2" />
+                  <stop offset="25%" stopColor="#00A3FF" />
+                  <stop offset="55%" stopColor="#38BDF8" />
+                  <stop offset="85%" stopColor="#0084FF" />
+                  <stop offset="100%" stopColor="#0055D4" stopOpacity="0.1" />
+                </linearGradient>
+              </defs>
+              <!-- Back orbit ring segment -->
+              <path d="M 125 72 C 145 66 150 56 138 50 C 122 43 92 48 64 57" stroke="url(#jl-m-orbit)" stroke-width="8" stroke-linecap="round" opacity="0.75" />
+              <!-- J side and front -->
+              <path d="M 52 24 L 66 36 L 66 98 C 66 116 54 126 38 126 C 26 126 18 120 18 120 L 22 108 C 22 108 28 114 36 114 C 44 114 50 108 50 96 L 50 44 L 32 44 L 28 34 L 52 24 Z" fill="url(#jl-m-blue-s)" />
+              <path d="M 44 32 L 60 42 L 60 94 C 60 110 50 120 36 120 C 26 120 20 115 20 115 L 24 105 C 24 105 28 109 34 109 C 42 109 46 103 46 92 L 46 48 L 30 48 L 26 40 L 44 32 Z" fill="url(#jl-m-blue-f)" />
+              <path d="M 44 32 L 60 42 L 54 44 L 36 36 Z" fill="#BAE6FD" opacity="0.9" />
+              <!-- L side and front -->
+              <path d="M 76 22 L 90 32 L 90 92 L 132 92 L 136 102 L 80 102 L 76 96 L 76 22 Z" fill="url(#jl-m-silver-s)" />
+              <path d="M 80 24 L 92 34 L 92 88 L 128 88 L 124 98 L 84 98 L 80 92 L 80 24 Z" fill="url(#jl-m-silver-f)" />
+              <path d="M 80 24 L 92 34 L 88 36 L 78 27 Z" fill="#FFFFFF" opacity="0.95" />
+              <!-- Front orbital sweep -->
+              <path d="M 12 94 C 10 108 26 116 54 114 C 92 110 134 94 148 76 C 154 68 148 62 136 64 C 114 68 76 86 42 98 C 26 103 14 101 12 94 Z" fill="url(#jl-m-orbit)" />
+              <path d="M 22 98 C 48 94 88 84 130 68" stroke="#BAE6FD" stroke-width="2.5" stroke-linecap="round" opacity="0.9" />
+            </svg>
+            <b class="sx" style="--sx:0.894">JL Technologies</b>
+          </a>
+
+          <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+            <i></i><i></i>
+          </button>
+
+          <div class="menu" id="site-menu">
+            <nav class="nav">
+              <a class="n-home" href="#" aria-label="Home">
+                <svg viewBox="0 0 20 21" fill="none" aria-hidden="true" style="width:100%;height:100%">
+                  <path d="M2 8.4 10 2l8 6.4V18a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" stroke="#202940" stroke-width="1.7" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a class="n-explore" href="#services"><span>Services</span></a>
+              <hr class="n-div">
+              <a class="n-grid" href="#work" aria-label="Work">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" style="width:100%;height:100%">
+                  <rect x="1" y="1" width="7.4" height="7.4" rx="1.7" stroke="#202940" stroke-width="1.7"/>
+                  <rect x="11.6" y="1" width="7.4" height="7.4" rx="1.7" stroke="#202940" stroke-width="1.7"/>
+                  <rect x="1" y="11.6" width="7.4" height="7.4" rx="1.7" stroke="#202940" stroke-width="1.7"/>
+                  <rect x="11.6" y="11.6" width="7.4" height="7.4" rx="1.7" stroke="#202940" stroke-width="1.7"/>
+                </svg>
+              </a>
+              <a class="n-product" href="#solutions"><span>Solutions</span></a>
+            </nav>
+            <div id="jl-auth-header-slot" class="l t r jl-auth-slot" style="--x:285;--y:30;display:flex;align-items:center;z-index:4"></div>
+            <a class="cta l t r" style="--x:58;--y:30" href="#contact">
+              <span>Start a Project</span>
+              <span class="knob">
+                <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="m6.6 3.6 6 5.4-6 5.4" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-blk">
+          <p class="eyebrow l c sx" style="--x:65.7;--y:-209.2;--sx:0.9293">Digital growth &amp; technology</p>
+          <h1 class="l c" style="--x:62.6;--y:-167.3">
+            <span class="sx" style="--sx:0.9431">Build. Grow.</span><br>
+            <span class="sx" style="--sx:0.9792">Automate. Scale.</span>
+          </h1>
+          <div class="tagrow">
+            <a class="play l c" style="--x:66;--y:34" href="#contact" aria-label="Explore Capabilities">
+              <svg viewBox="0 0 13 14" fill="none" aria-hidden="true">
+                <path d="M1.4 1.3 11.6 7 1.4 12.7z" fill="#0b1526"/>
+              </svg>
+            </a>
+            <span class="tag l c sx" style="--x:131;--y:48.7;--sx:0.8973">Digital solutions built to help businesses grow, operate smarter, and scale.</span>
+          </div>
+          <aside class="panel l c r" style="--x:58;--y:-165">
+            <span class="p-title sx" style="--sx:0.8707">AI-Powered</span>
+            <span class="dot"></span>
+            <div class="shield">
+              <svg viewBox="0 0 30 39" fill="none" aria-hidden="true">
+                <path d="M15 1.2 1.6 6.6v13.1c0 6.6 5.1 12.6 13.4 17.9 8.3-5.3 13.4-11.3 13.4-17.9V6.6z" stroke="#101c33" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M2.1 18.9c4.6-1.1 8.9-1.6 12.9-1.6s8.3.5 12.9 1.6" stroke="#101c33" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <p class="p-sub sx" style="--sx:0.8899">Digital<br>Growth &amp;<br>Automation</p>
+            <div class="scale">
+              <span>Strategy</span>
+              <span>Build</span>
+              <span>Automate</span>
+              <span>Scale</span>
+            </div>
+            <div class="track"><i></i></div>
+          </aside>
+        </div>
+
+        <div class="row">
+          <div class="stats">
+            <div class="stat">
+              <span class="num l b sx" style="--x:64;--y:60.4;--sx:1">6+</span>
+              <span class="lbl l b sx" style="--x:295;--y:73.2;--sx:0.9634">Core Service<br>Areas</span>
+            </div>
+            <span class="slash l b" style="--x:418;--y:76"></span>
+            <div class="stat">
+              <span class="num l b sx" style="--x:480;--y:60.4;--sx:0.76">AI+Tech</span>
+              <span class="lbl l b sx" style="--x:716;--y:96.7;--sx:0.9209">Integrated<br>Solutions</span>
+            </div>
+          </div>
+          <a class="meet l b r" style="--x:59;--y:66" href="#contact">
+            <span class="thumb">
+              <!-- Official JL Technologies Emblem in Thumbnail -->
+              <svg viewBox="0 0 160 160" fill="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="jl-t-blue-f" x1="20" y1="20" x2="80" y2="120" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#38BDF8" />
+                    <stop offset="40%" stopColor="#0084FF" />
+                    <stop offset="100%" stopColor="#004AD6" />
+                  </linearGradient>
+                  <linearGradient id="jl-t-blue-s" x1="40" y1="40" x2="90" y2="140" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#0284C7" />
+                    <stop offset="60%" stopColor="#004AD6" />
+                    <stop offset="100%" stopColor="#00216B" />
+                  </linearGradient>
+                  <linearGradient id="jl-t-silver-f" x1="70" y1="20" x2="130" y2="120" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#FFFFFF" />
+                    <stop offset="45%" stopColor="#E2E8F0" />
+                    <stop offset="100%" stopColor="#94A3B8" />
+                  </linearGradient>
+                  <linearGradient id="jl-t-silver-s" x1="80" y1="20" x2="140" y2="130" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#CBD5E1" />
+                    <stop offset="50%" stopColor="#64748B" />
+                    <stop offset="100%" stopColor="#334155" />
+                  </linearGradient>
+                  <linearGradient id="jl-t-orbit" x1="10" y1="110" x2="150" y2="60" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#0066FF" stopOpacity="0.2" />
+                    <stop offset="25%" stopColor="#00A3FF" />
+                    <stop offset="55%" stopColor="#38BDF8" />
+                    <stop offset="85%" stopColor="#0084FF" />
+                    <stop offset="100%" stopColor="#0055D4" stopOpacity="0.1" />
+                  </linearGradient>
+                </defs>
+                <path d="M 125 72 C 145 66 150 56 138 50 C 122 43 92 48 64 57" stroke="url(#jl-t-orbit)" stroke-width="8" stroke-linecap="round" opacity="0.75" />
+                <path d="M 52 24 L 66 36 L 66 98 C 66 116 54 126 38 126 C 26 126 18 120 18 120 L 22 108 C 22 108 28 114 36 114 C 44 114 50 108 50 96 L 50 44 L 32 44 L 28 34 L 52 24 Z" fill="url(#jl-t-blue-s)" />
+                <path d="M 44 32 L 60 42 L 60 94 C 60 110 50 120 36 120 C 26 120 20 115 20 115 L 24 105 C 24 105 28 109 34 109 C 42 109 46 103 46 92 L 46 48 L 30 48 L 26 40 L 44 32 Z" fill="url(#jl-t-blue-f)" />
+                <path d="M 44 32 L 60 42 L 54 44 L 36 36 Z" fill="#BAE6FD" opacity="0.9" />
+                <path d="M 76 22 L 90 32 L 90 92 L 132 92 L 136 102 L 80 102 L 76 96 L 76 22 Z" fill="url(#jl-t-silver-s)" />
+                <path d="M 80 24 L 92 34 L 92 88 L 128 88 L 124 98 L 84 98 L 80 92 L 80 24 Z" fill="url(#jl-t-silver-f)" />
+                <path d="M 80 24 L 92 34 L 88 36 L 78 27 Z" fill="#FFFFFF" opacity="0.95" />
+                <path d="M 12 94 C 10 108 26 116 54 114 C 92 110 134 94 148 76 C 154 68 148 62 136 64 C 114 68 76 86 42 98 C 26 103 14 101 12 94 Z" fill="url(#jl-t-orbit)" />
+                <path d="M 22 98 C 48 94 88 84 130 68" stroke="#BAE6FD" stroke-width="2.5" stroke-linecap="round" opacity="0.9" />
+              </svg>
+            </span>
+            <b class="sx" style="--sx:0.84">Meet JL Technologies</b>
+            <span class="knob">
+              <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="m6.6 3.6 6 5.4-6 5.4" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div> <!-- end hero-stage -->
+
+  <!-- STICKY FLOATING HEADER BAR -->
+  <nav id="jl-sticky-bar" class="jl-sticky-bar" aria-label="Main Navigation">
+    <div class="jl-header-progress-track" aria-hidden="true">
+      <div id="jl-header-progress-bar" class="jl-header-progress-bar"></div>
+    </div>
+    <a href="#hero" class="jl-sticky-brand">
+      <svg viewBox="0 0 160 160" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="sb-b" x1="20" y1="20" x2="80" y2="120" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#38BDF8"/><stop offset="100%" stopColor="#004AD6"/>
+          </linearGradient>
+          <linearGradient id="sb-s" x1="70" y1="20" x2="130" y2="120" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#FFFFFF"/><stop offset="100%" stopColor="#94A3B8"/>
+          </linearGradient>
+        </defs>
+        <path d="M 44 32 L 60 42 L 60 94 C 60 110 50 120 36 120 C 26 120 20 115 20 115 L 24 105 C 24 105 28 109 34 109 C 42 109 46 103 46 92 L 46 48 L 30 48 L 26 40 L 44 32 Z" fill="url(#sb-b)"/>
+        <path d="M 80 24 L 92 34 L 92 88 L 128 88 L 124 98 L 84 98 L 80 92 L 80 24 Z" fill="url(#sb-s)"/>
+        <path d="M 12 94 C 36 90 84 80 148 76 C 114 84 76 96 30 102 Z" fill="#38BDF8"/>
+      </svg>
+      <span>JL Technologies</span>
+    </a>
+    <div class="jl-sticky-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div id="jl-auth-sticky-slot" style="display:inline-flex;align-items:center;margin-left:6px"></div>
+    <a href="#contact" class="jl-sticky-cta">Start a Project &rarr;</a>
+  </nav>
+
+  <!-- SCROLLABLE PAGE CONTENT SECTIONS -->
+  <div class="jl-scroll-content">
+    
+    <!-- 1. ABOUT SECTION -->
+    <section id="about" class="jl-sec-wrap">
+      <div class="jl-reveal-header" style="display:flex;flex-direction:column;max-width:880px">
+        <span class="jl-badge-tag">About JL Technologies</span>
+        <h2 class="jl-sec-h2">We Build What Moves Businesses Forward.</h2>
+        <p class="jl-sec-p">
+          JL Technologies combines digital marketing, creative design, software development, AI, automation, and blockchain technology into a single high-performing engine. We help companies attract clients, launch modern digital products, and scale operational capacity without friction.
+        </p>
+      </div>
+
+      <div class="jl-reveal-stagger" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px;margin-bottom:48px">
+        <div class="jl-dark-card jl-reveal-item">
+          <span class="jl-dark-pill blue">01 / Strategy</span>
+          <h3>Commercial-First Architecture</h3>
+          <p>Every line of code and ad campaign starts with clear revenue targets. We prioritize unit economics, customer lifetime value, and operational ROI over vanity metrics.</p>
+        </div>
+        <div class="jl-dark-card jl-reveal-item">
+          <span class="jl-dark-pill purple">02 / Design</span>
+          <h3>Distinctive Visual Authority</h3>
+          <p>World-class brand identities, high-converting web experiences, and seamless UI/UX design systems that command immediate trust and stand out in competitive markets.</p>
+        </div>
+        <div class="jl-dark-card jl-reveal-item">
+          <span class="jl-dark-pill green">03 / Engineering</span>
+          <h3>Production-Grade Software</h3>
+          <p>Full-stack mobile, web, and desktop development built with modern frameworks, reliable APIs, enterprise databases, and Web3 security protocols.</p>
+        </div>
+        <div class="jl-dark-card jl-reveal-item">
+          <span class="jl-dark-pill orange">04 / Automation</span>
+          <h3>Autonomous Systems &amp; AI</h3>
+          <p>Connecting voice AI agents, automated workflow pipelines (n8n/Make), and centralized CRMs to eliminate manual bottlenecks and capture leads 24/7.</p>
+        </div>
+      </div>
+
+      <!-- Why JL vs Fragmented Agencies -->
+      <div class="jl-dark-card jl-reveal-block" style="padding:40px 32px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px">
+          <div style="max-width:700px">
+            <span class="jl-dark-pill blue">The JL Advantage</span>
+            <h3 style="font-size:24px;margin-top:12px;margin-bottom:12px">One Team. Multiple Digital Capabilities.</h3>
+            <p style="font-size:15px;line-height:1.65;color:var(--muted2)">
+              Traditionally, companies hire separate marketing agencies, freelance UI designers, offshore developers, and automation consultants. Miscommunication slows down execution and burns capital. JL Technologies provides a single multidisciplinary partner handling acquisition, design, software, and autonomous systems in complete lockstep.
+            </p>
+          </div>
+          <a href="#contact" class="jl-dark-btn" style="width:auto;padding:12px 24px;align-self:center">Start a Conversation &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. SERVICES SECTION (6 DIVISIONS) -->
+    <section id="services" class="jl-sec-wrap jl-sec-border">
+      <div class="jl-reveal-header" style="text-align:center;max-width:820px;margin:0 auto 56px auto">
+        <span class="jl-badge-tag">Six Core Divisions</span>
+        <h2 class="jl-sec-h2">Capabilities Built for Sustainable Growth</h2>
+        <p class="jl-sec-p" style="margin-left:auto;margin-right:auto">
+          From customer acquisition and creative media to custom mobile applications, enterprise automation, and blockchain protocols — explore our end-to-end technology services.
+        </p>
+      </div>
+
+      <div class="jl-reveal-stagger reveal-stagger" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:24px">
+        
+        <!-- Division 1: Digital Marketing -->
+        <div class="jl-dark-card jl-reveal-item reveal-item service-card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="jl-dark-pill blue">Division 01</span>
+            <span style="font-size:12px;color:#64748B">Acquisition</span>
+          </div>
+          <h3>Digital Marketing</h3>
+          <p>Targeted performance marketing, cold acquisition, and conversion campaigns designed to systematically attract customers and build predictable revenue pipeline.</p>
+          <div class="jl-dark-tags">
+            <span>Google Ads</span>
+            <span>Meta Ads (FB &amp; IG)</span>
+            <span>TikTok Ads</span>
+            <span>Social Media Marketing</span>
+            <span>Campaign Management</span>
+            <span>Cold Outreach</span>
+            <span>Lead Generation</span>
+          </div>
+          <a href="#contact" class="jl-dark-btn" data-prefill-service="Digital Marketing">Request Digital Marketing &rarr;</a>
+        </div>
+
+        <!-- Division 2: AI Video & Creative Content -->
+        <div class="jl-dark-card jl-reveal-item reveal-item service-card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="jl-dark-pill purple">Division 02</span>
+            <span style="font-size:12px;color:#64748B">Creative Media</span>
+          </div>
+          <h3>AI Video &amp; Creative Content</h3>
+          <p>Engaging visual storytelling powered by cutting-edge AI video models, custom digital avatars, and motion assets that stop thumbs and convert cold traffic.</p>
+          <div class="jl-dark-tags">
+            <span>AI UGC Videos</span>
+            <span>AI Spokesperson Videos</span>
+            <span>AI Talking Avatars</span>
+            <span>Commercial Videos</span>
+            <span>Explainer Videos</span>
+            <span>SaaS / Product Demos</span>
+            <span>AI Marketing Creatives</span>
+          </div>
+          <a href="#contact" class="jl-dark-btn" data-prefill-service="AI Video & Creative">Request AI Video Content &rarr;</a>
+        </div>
+
+        <!-- Division 3: Design & Branding -->
+        <div class="jl-dark-card jl-reveal-item reveal-item service-card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="jl-dark-pill blue">Division 03</span>
+            <span style="font-size:12px;color:#64748B">Branding &amp; UI</span>
+          </div>
+          <h3>Design &amp; Branding</h3>
+          <p>Cohesive brand identities and world-class digital user interfaces that command authority, foster customer loyalty, and guide users effortlessly toward conversion.</p>
+          <div class="jl-dark-tags">
+            <span>Brand Identity &amp; Logos</span>
+            <span>UI/UX Design</span>
+            <span>Landing Page Design</span>
+            <span>Website Design</span>
+            <span>App &amp; Mobile UI</span>
+            <span>Product / SaaS Design</span>
+            <span>Marketing Visual Assets</span>
+          </div>
+          <a href="#contact" class="jl-dark-btn" data-prefill-service="Design & Branding">Request Design &amp; Branding &rarr;</a>
+        </div>
+
+        <!-- Division 4: App & Software Development -->
+        <div class="jl-dark-card jl-reveal-item reveal-item service-card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="jl-dark-pill green">Division 04</span>
+            <span style="font-size:12px;color:#64748B">Engineering</span>
+          </div>
+          <h3>App &amp; Software Development</h3>
+          <p>Full-stack mobile, web, and enterprise software engineering. Clean architecture, robust database design, and intuitive interfaces built to scale reliably.</p>
+          <div class="jl-dark-tags">
+            <span>iOS &amp; Android Native</span>
+            <span>Cross-Platform (Flutter / React)</span>
+            <span>Web Applications</span>
+            <span>Desktop Applications</span>
+            <span>AI Mobile Apps</span>
+            <span>Custom Software</span>
+            <span>Enterprise Portals</span>
+          </div>
+          <a href="#contact" class="jl-dark-btn" data-prefill-service="App & Software Development">Request Development &rarr;</a>
+        </div>
+
+        <!-- Division 5: Automation & AI -->
+        <div class="jl-dark-card jl-reveal-item reveal-item service-card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="jl-dark-pill orange">Division 05</span>
+            <span style="font-size:12px;color:#64748B">Autonomous Systems</span>
+          </div>
+          <h3>Automation &amp; AI Systems</h3>
+          <p>Eliminate manual operational overhead. We engineer automated workflows, AI phone voice agents, and connected CRM architectures that operate 24/7.</p>
+          <div class="jl-dark-tags">
+            <span>n8n Workflows</span>
+            <span>Make.com &amp; Zapier</span>
+            <span>Retell AI &amp; Vapi Voice</span>
+            <span>Odoo &amp; GoHighLevel (GHL)</span>
+            <span>AI Assistants &amp; Agents</span>
+            <span>CRM &amp; Sales Pipelines</span>
+            <span>Support Automation</span>
+          </div>
+          <a href="#contact" class="jl-dark-btn" data-prefill-service="Automation & AI">Request Automation &amp; AI &rarr;</a>
+        </div>
+
+        <!-- Division 6: Blockchain & Web3 -->
+        <div class="jl-dark-card jl-reveal-item reveal-item service-card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="jl-dark-pill blue">Division 06</span>
+            <span style="font-size:12px;color:#64748B">Decentralized</span>
+          </div>
+          <h3>Blockchain &amp; Web3</h3>
+          <p>Smart contract development, token launch architectures, Solana ecosystem engineering, and high-frequency automated blockchain bot systems.</p>
+          <div class="jl-dark-tags">
+            <span>Tokenization</span>
+            <span>Smart Contracts</span>
+            <span>Solana Development</span>
+            <span>Token Creation</span>
+            <span>Web3 Applications</span>
+            <span>DeFi Integrations</span>
+            <span>Blockchain Trading Bots</span>
+          </div>
+          <a href="#contact" class="jl-dark-btn" data-prefill-service="Blockchain & Web3">Request Web3 Build &rarr;</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. INTEGRATED SOLUTIONS -->
+    <section id="solutions" class="jl-sec-wrap jl-sec-border">
+      <div class="jl-reveal-header" style="max-width:800px;margin-bottom:48px">
+        <span class="jl-badge-tag">Integrated Systems</span>
+        <h2 class="jl-sec-h2">End-to-End Technology Blueprints</h2>
+        <p class="jl-sec-p">
+          How our multidisciplinary divisions connect into unified business engines that eliminate operational friction and accelerate growth.
+        </p>
+      </div>
+
+      <div class="jl-reveal-stagger reveal-stagger" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+        <div class="jl-dark-card jl-reveal-item reveal-item solution-card service-card">
+          <span class="jl-dark-pill blue">Acquisition Flow</span>
+          <h4>Full-Funnel Growth Machine</h4>
+          <p>Targeted Ads (Meta &amp; Google) feed AI-generated UGC video creatives directly into lightning-fast custom landing pages, triggering instant CRM follow-up via WhatsApp and Email.</p>
+          <div class="jl-dark-tags">
+            <span>Ads Engine</span>
+            <span>AI UGC</span>
+            <span>Landing UI</span>
+            <span>CRM Sync</span>
+          </div>
+        </div>
+
+        <div class="jl-dark-card jl-reveal-item reveal-item solution-card service-card">
+          <span class="jl-dark-pill orange">Autonomous Inbound</span>
+          <h4>24/7 AI Voice &amp; Workflow Triage</h4>
+          <p>Retell AI voice agents field inbound prospect calls instantly, conduct technical qualification, and route booked meetings into n8n webhooks for real-time CRM updates.</p>
+          <div class="jl-dark-tags">
+            <span>Retell AI</span>
+            <span>n8n</span>
+            <span>GoHighLevel</span>
+            <span>Calendar API</span>
+          </div>
+        </div>
+
+        <div class="jl-dark-card jl-reveal-item reveal-item solution-card service-card">
+          <span class="jl-dark-pill green">Cloud &amp; Mobile</span>
+          <h4>Bespoke Software Delivery</h4>
+          <p>From architectural wireframing to production deployment on Apple App Store, Google Play, and enterprise cloud infrastructure with continuous monitoring.</p>
+          <div class="jl-dark-tags">
+            <span>Flutter/React</span>
+            <span>Node/Express</span>
+            <span>PostgreSQL</span>
+            <span>Docker/Cloud</span>
+          </div>
+        </div>
+
+        <div class="jl-dark-card jl-reveal-item reveal-item solution-card service-card">
+          <span class="jl-dark-pill purple">Decentralized</span>
+          <h4>Solana Protocol &amp; Telemetry Bots</h4>
+          <p>Audited token minting, liquidity routing, and real-time execution bots programmed on Solana with sub-second RPC indexing and automated alert webhooks.</p>
+          <div class="jl-dark-tags">
+            <span>Solana (Rust)</span>
+            <span>Tokenomics</span>
+            <span>Custom Bots</span>
+            <span>RPC Nodes</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. WORK / CASE STUDIES -->
+    <section id="work" class="jl-sec-wrap jl-sec-border">
+      <div class="jl-reveal-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:48px">
+        <div style="max-width:760px">
+          <span class="jl-badge-tag">Selected Capabilities</span>
+          <h2 class="jl-sec-h2">Architectures We Have Designed &amp; Delivered</h2>
+          <p class="jl-sec-p" style="margin-bottom:0">
+            Real-world capabilities built for growth-stage businesses, enterprise operations, and venture-backed founders.
+          </p>
+        </div>
+        <div style="background:linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.12) 100%);border:1px solid rgba(255,255,255,0.40);border-top:1.2px solid rgba(255,255,255,0.80);box-shadow:0 4px 16px rgba(15,23,42,0.05), inset 0 1.2px 1.2px rgba(255,255,255,0.75);-webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);padding:14px 20px;border-radius:16px;font-size:12.5px;color:var(--muted2);max-width:320px">
+          🔒 <strong>Confidentiality Notice:</strong> To protect proprietary algorithms and client competitive advantages, all engagements operate under strict bilateral NDAs.
+        </div>
+      </div>
+
+      <div class="jl-reveal-stagger" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:24px">
+        
+        <!-- Case 1 -->
+        <div class="jl-dark-card jl-reveal-item">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="jl-dark-pill blue">B2B SaaS</span>
+            <span style="font-size:12px;color:#0055B3;font-weight:600">3.4x ROAS</span>
+          </div>
+          <h4>Enterprise Acquisition &amp; Pipeline Engine</h4>
+          <p>Restructured search intent architecture, engineered interactive product demo landing pages, and deployed cold email infrastructure that produced 180+ qualified enterprise pipeline demos in 90 days.</p>
+          <div class="jl-dark-tags">
+            <span>Google Search</span>
+            <span>High-Converting UI</span>
+            <span>Cold Infrastructure</span>
+          </div>
+        </div>
+
+        <!-- Case 2 -->
+        <div class="jl-dark-card jl-reveal-item">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="jl-dark-pill orange">Operational AI</span>
+            <span style="font-size:12px;color:#C2410C;font-weight:600">1,200+ Calls/Day</span>
+          </div>
+          <h4>Autonomous Customer Voice Triage</h4>
+          <p>Engineered an intelligent conversational voice AI assistant handling customer inquiries, appointment confirmations, and CRM qualification, reducing human support overhead by 68%.</p>
+          <div class="jl-dark-tags">
+            <span>Retell AI</span>
+            <span>n8n Orchestration</span>
+            <span>CRM Two-Way Sync</span>
+          </div>
+        </div>
+
+        <!-- Case 3 -->
+        <div class="jl-dark-card jl-reveal-item">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="jl-dark-pill green">Mobile Engineering</span>
+            <span style="font-size:12px;color:#15803D;font-weight:600">iOS &amp; Android</span>
+          </div>
+          <h4>Cross-Platform FinTech Mobile Application</h4>
+          <p>Architected biometric security, sub-second wallet balances, and multi-currency payout rail integration on Flutter, scaling smoothly past 50,000 active verified accounts.</p>
+          <div class="jl-dark-tags">
+            <span>Flutter</span>
+            <span>Bank-Grade Encryption</span>
+            <span>REST API</span>
+          </div>
+        </div>
+
+        <!-- Case 4 -->
+        <div class="jl-dark-card jl-reveal-item">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="jl-dark-pill purple">Solana Web3</span>
+            <span style="font-size:12px;color:#6B21A8;font-weight:600">Sub-Second Execution</span>
+          </div>
+          <h4>Token Infrastructure &amp; Telemetry Suite</h4>
+          <p>Created audited Solana token contracts with custom liquidity routing and built high-speed Telegram trading bots with real-time websocket price alerts.</p>
+          <div class="jl-dark-tags">
+            <span>Solana (Rust)</span>
+            <span>Tokenomics</span>
+            <span>Telegram Bot Engine</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. PROCESS SECTION -->
+    <section id="process" class="jl-sec-wrap jl-sec-border">
+      <div class="jl-reveal-header" style="text-align:center;max-width:780px;margin:0 auto 48px auto">
+        <span class="jl-badge-tag">Delivery Framework</span>
+        <h2 class="jl-sec-h2">From First Conversation to Launch</h2>
+        <p class="jl-sec-p" style="margin-left:auto;margin-right:auto">
+          A disciplined, transparent delivery framework engineered to eliminate guesswork, keep you informed, and hit defined launch milestones.
+        </p>
+      </div>
+
+      <div class="jl-process-grid jl-reveal-stagger">
+        <div class="jl-process-step jl-reveal-item">
+          <span class="jl-step-num">01</span>
+          <h4>Discover</h4>
+          <p>We analyze your business model, customer economics, competitive landscape, and technical requirements to define scope.</p>
+        </div>
+        <div class="jl-process-step jl-reveal-item">
+          <span class="jl-step-num">02</span>
+          <h4>Strategize</h4>
+          <p>We map out the system architecture, marketing acquisition funnel, technology stack, and clear sprint milestones.</p>
+        </div>
+        <div class="jl-process-step jl-reveal-item">
+          <span class="jl-step-num">03</span>
+          <h4>Design &amp; Build</h4>
+          <p>Rapid design prototyping, high-converting UX assets, and modular engineering written to clean, scalable code standards.</p>
+        </div>
+        <div class="jl-process-step jl-reveal-item">
+          <span class="jl-step-num">04</span>
+          <h4>Automate</h4>
+          <p>We connect AI models, voice agents, CRM workflows, and telemetry pipelines so your business operations run autonomously.</p>
+        </div>
+        <div class="jl-process-step jl-reveal-item">
+          <span class="jl-step-num">05</span>
+          <h4>Scale &amp; Optimize</h4>
+          <p>Continuous monitoring, conversion rate optimization, ad budget scaling, and long-term technical advisory.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. INDUSTRIES SECTION -->
+    <section id="industries" class="jl-sec-wrap jl-sec-border">
+      <div class="jl-reveal-header" style="max-width:760px;margin-bottom:40px">
+        <span class="jl-badge-tag">Commercial Verticals</span>
+        <h2 class="jl-sec-h2">Industries We Can Support</h2>
+        <p class="jl-sec-p">
+          Our digital marketing, custom software, and automation capabilities adapt directly to the specific compliance, security, and sales cycle demands of varied commercial sectors.
+        </p>
+      </div>
+
+      <div class="jl-reveal-stagger" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+        <div class="jl-dark-card jl-reveal-item" style="padding:22px 20px">
+          <h4>Startups &amp; Founders</h4>
+          <p>Rapid MVP design, investor demo builds, and initial go-to-market user acquisition funnels.</p>
+        </div>
+        <div class="jl-dark-card jl-reveal-item" style="padding:22px 20px">
+          <h4>E-Commerce &amp; DTC</h4>
+          <p>Meta/TikTok ad campaigns, AI UGC creative pipelines, and automated customer retention workflows.</p>
+        </div>
+        <div class="jl-dark-card jl-reveal-item" style="padding:22px 20px">
+          <h4>B2B SaaS &amp; Software</h4>
+          <p>Qualified demo generation, product onboarding UI, and automated sales pipeline qualification.</p>
+        </div>
+        <div class="jl-dark-card jl-reveal-item" style="padding:22px 20px">
+          <h4>Healthcare &amp; Wellness</h4>
+          <p>Patient intake automation, 24/7 AI voice call scheduling, and privacy-compliant digital portals.</p>
+        </div>
+        <div class="jl-dark-card jl-reveal-item" style="padding:22px 20px">
+          <h4>Real Estate &amp; Development</h4>
+          <p>High-value lead acquisition, virtual video showcases, and instant automated WhatsApp CRM follow-ups.</p>
+        </div>
+        <div class="jl-dark-card jl-reveal-item" style="padding:22px 20px">
+          <h4>Financial &amp; Web3 Tech</h4>
+          <p>Bank-grade cross-platform mobile apps, biometric auth, and audited Solana smart contract protocols.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CONTACT / START A PROJECT SECTION -->
+    <section id="contact" class="jl-sec-wrap jl-sec-border">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:flex-start">
+        
+        <div class="jl-reveal-block">
+          <span class="jl-badge-tag">Get in Touch</span>
+          <h2 class="jl-sec-h2" style="font-size:clamp(30px, 3.5vw, 44px)">Have a Business Idea or Scaling Challenge?<br>Let's Build It.</h2>
+          <p class="jl-sec-p" style="margin-bottom:32px">
+            Tell us about your objectives, current operational bottlenecks, or project scope. Our senior team will review your requirements and provide a clear roadmap within 24 business hours.
+          </p>
+
+          <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:36px">
+            <a href="mailto:jossielarge24@gmail.com" class="jl-dark-card" style="flex-direction:row;align-items:center;padding:18px 22px;text-decoration:none;gap:16px">
+              <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg, rgba(0,132,255,0.20) 0%, rgba(0,132,255,0.05) 100%);border:1px solid rgba(0,132,255,0.35);border-top:1.2px solid rgba(255,255,255,0.85);box-shadow:inset 0 1px 1px rgba(255,255,255,0.85), 0 4px 14px rgba(0,132,255,0.12);-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);display:flex;align-items:center;justify-content:center;color:#0084FF;flex:none">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div style="font-size:12px;color:var(--muted)">Email Us Directly</div>
+                <div style="font-size:15px;font-weight:600;color:var(--ink)">jossielarge24@gmail.com</div>
+              </div>
+            </a>
+
+            <a href="https://wa.me/2349157881683?text=Hello%20JL%20Technologies%2C%20I%20would%20like%20to%20discuss%20a%20project" target="_blank" rel="noopener noreferrer" class="jl-dark-card" style="flex-direction:row;align-items:center;padding:18px 22px;text-decoration:none;gap:16px">
+              <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg, rgba(22,163,74,0.20) 0%, rgba(22,163,74,0.05) 100%);border:1px solid rgba(22,163,74,0.35);border-top:1.2px solid rgba(255,255,255,0.85);box-shadow:inset 0 1px 1px rgba(255,255,255,0.85), 0 4px 14px rgba(22,163,74,0.12);-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);display:flex;align-items:center;justify-content:center;color:#15803D;flex:none">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </div>
+              <div>
+                <div style="font-size:12px;color:var(--muted)">Direct Messaging / WhatsApp</div>
+                <div style="font-size:15px;font-weight:600;color:var(--ink)">09157881683 (+234 915 788 1683)</div>
+              </div>
+            </a>
+          </div>
+
+          <div style="font-size:13px;color:var(--muted2);line-height:1.6">
+            ✓ Complete bilateral NDA protection<br>
+            ✓ Senior engineers &amp; marketing strategists on every brief<br>
+            ✓ Realistic timelines with transparent deliverables
+          </div>
+        </div>
+
+        <!-- Intake Form Card -->
+        <div class="jl-dark-card jl-reveal-block" style="padding:36px 30px">
+          <h3 style="font-size:22px;margin-bottom:6px">Start Your Project Brief</h3>
+          <p style="font-size:14px;color:var(--muted2);margin-bottom:20px">Fill out the brief below and our team will get to work on your proposal.</p>
+
+          <form id="jl-page-contact-form" style="display:flex;flex-direction:column;gap:16px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <div class="jl-field">
+                <label for="p-name" style="color:#1E293B">Your Name *</label>
+                <input type="text" id="p-name" required placeholder="Alex Johnson" />
+              </div>
+              <div class="jl-field">
+                <label for="p-email" style="color:#1E293B">Work Email *</label>
+                <input type="email" id="p-email" required placeholder="alex@company.com" />
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <div class="jl-field">
+                <label for="p-company" style="color:#1E293B">Company / Project Name</label>
+                <input type="text" id="p-company" placeholder="e.g. Apex Health" />
+              </div>
+              <div class="jl-field">
+                <label for="p-phone" style="color:#1E293B">WhatsApp / Phone</label>
+                <input type="tel" id="p-phone" placeholder="09157881683 / +234..." />
+              </div>
+            </div>
+
+            <div class="jl-field">
+              <label style="color:#1E293B">Service Needed *</label>
+              <div class="jl-pill-group" id="p-service-pills">
+                <span class="jl-pill-option selected" data-val="Digital Marketing">Digital Marketing</span>
+                <span class="jl-pill-option" data-val="AI Video & Creative">AI Video &amp; Creative</span>
+                <span class="jl-pill-option" data-val="Design & Branding">Design &amp; Branding</span>
+                <span class="jl-pill-option" data-val="App & Software Development">Software Dev</span>
+                <span class="jl-pill-option" data-val="Automation & AI">Automation &amp; AI</span>
+                <span class="jl-pill-option" data-val="Blockchain & Web3">Blockchain / Web3</span>
+              </div>
+              <input type="hidden" id="p-service-hidden" value="Digital Marketing" />
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <div class="jl-field">
+                <label for="p-budget" style="color:#1E293B">Estimated Budget</label>
+                <select id="p-budget">
+                  <option value="$2,500 - $5,000">$2,500 – $5,000</option>
+                  <option value="$5,000 - $15,000" selected>$5,000 – $15,000</option>
+                  <option value="$15,000 - $35,000">$15,000 – $35,000</option>
+                  <option value="$35,000+">$35,000+</option>
+                </select>
+              </div>
+              <div class="jl-field">
+                <label for="p-timeline" style="color:#1E293B">Expected Timeline</label>
+                <select id="p-timeline">
+                  <option value="Urgent (1-2 weeks)">Urgent (1–2 weeks)</option>
+                  <option value="Standard (1 month)" selected>Standard (1 month)</option>
+                  <option value="Multi-Month Roadmap">Multi-Month Roadmap</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="jl-field">
+              <label for="p-details" style="color:#1E293B">Project Overview &amp; Goals *</label>
+              <textarea id="p-details" rows="3" required placeholder="Describe your product vision, audience, or operational bottlenecks..."></textarea>
+            </div>
+
+            <button type="submit" class="jl-dark-btn" id="p-submit-btn" style="padding:14px 24px;font-size:14.5px">
+              Submit Project Brief &rarr;
+            </button>
+
+            <div id="p-success-box" style="display:none;background:#F0FDF4;border:1px solid #BBF7D0;color:#166534;padding:14px;border-radius:12px;font-size:14px;text-align:center">
+              ✓ <strong>Thank you!</strong> Your project brief has been submitted successfully. A strategy and technology director from JL Technologies will contact you within 24 business hours.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 8. FOOTER -->
+    <footer class="jl-main-footer">
+      <div class="jl-footer-inner">
+        <div>
+          <a href="#hero" class="jl-sticky-brand" style="font-size:18px;margin-bottom:14px">
+            <svg viewBox="0 0 160 160" fill="none" aria-hidden="true" style="width:34px;height:34px">
+              <path d="M 44 32 L 60 42 L 60 94 C 60 110 50 120 36 120 C 26 120 20 115 20 115 L 24 105 C 24 105 28 109 34 109 C 42 109 46 103 46 92 L 46 48 L 30 48 L 26 40 L 44 32 Z" fill="#0084FF"/>
+              <path d="M 80 24 L 92 34 L 92 88 L 128 88 L 124 98 L 84 98 L 80 92 L 80 24 Z" fill="#CBD5E1"/>
+              <path d="M 12 94 C 36 90 84 80 148 76 C 114 84 76 96 30 102 Z" fill="#38BDF8"/>
+            </svg>
+            <span>JL Technologies</span>
+          </a>
+          <p style="color:#64748B;line-height:1.6;max-width:340px;margin-bottom:16px">
+            Digital marketing, design, software engineering, AI, automation, and Web3 solutions. We build what moves businesses forward.
+          </p>
+          <div style="font-size:12px;color:#475569">
+            Confidential Client Partnerships protected under bilateral NDAs.
+          </div>
+        </div>
+
+        <div class="jl-footer-col">
+          <h5>Core Divisions</h5>
+          <ul>
+            <li><a href="#services">Digital Marketing</a></li>
+            <li><a href="#services">AI Video &amp; Creative</a></li>
+            <li><a href="#services">Design &amp; Branding</a></li>
+            <li><a href="#services">Software Development</a></li>
+            <li><a href="#services">Automation &amp; AI</a></li>
+            <li><a href="#services">Blockchain &amp; Web3</a></li>
+          </ul>
+        </div>
+
+        <div class="jl-footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="#about">About JL</a></li>
+            <li><a href="#solutions">Solutions</a></li>
+            <li><a href="#work">Selected Work</a></li>
+            <li><a href="#process">Delivery Process</a></li>
+            <li><a href="#industries">Industries</a></li>
+            <li><a href="#contact">Start a Project</a></li>
+          </ul>
+        </div>
+
+        <div class="jl-footer-col">
+          <h5>Direct Contact</h5>
+          <ul>
+            <li><a href="mailto:jossielarge24@gmail.com">jossielarge24@gmail.com</a></li>
+            <li><a href="https://wa.me/2349157881683?text=Hello%20JL%20Technologies" target="_blank" rel="noopener noreferrer">WhatsApp: 09157881683</a></li>
+            <li><a href="#contact">Schedule Consultation</a></li>
+            <li><span style="color:#475569;font-size:12px">Response time: &lt; 24h</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="jl-footer-bottom">
+        <div>&copy; 2026 JL Technologies. All rights reserved. Strategy. Design. Technology. Growth.</div>
+        <div style="display:flex;gap:18px">
+          <a href="#about" style="color:#64748B;text-decoration:none">Privacy &amp; NDA Standards</a>
+          <a href="#hero" style="color:#64748B;text-decoration:none">Back to Top &uarr;</a>
+        </div>
+      </div>
+    </footer>
+
+  </div> <!-- end jl-scroll-content -->
+</div> <!-- end page -->
+
+  <!-- INTERACTIVE MODAL OVERLAY -->
+  <div id="jl-modal" class="jl-modal-layer" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="jl-modal-box" id="jl-modal-content">
+      <div class="jl-modal-header">
+        <div class="jl-modal-tabs" role="tablist">
+          <button type="button" class="jl-tab-btn is-active" data-tab="services" role="tab">Services (6)</button>
+          <button type="button" class="jl-tab-btn" data-tab="solutions" role="tab">Solutions</button>
+          <button type="button" class="jl-tab-btn" data-tab="work" role="tab">Work</button>
+          <button type="button" class="jl-tab-btn" data-tab="about" role="tab">About JL</button>
+          <button type="button" class="jl-tab-btn is-highlight" data-tab="contact" role="tab">Start a Project</button>
+        </div>
+        <button type="button" class="jl-modal-close" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="jl-modal-body">
+        <!-- TAB 1: SERVICES -->
+        <div class="jl-tab-pane is-active" id="pane-services" role="tabpanel">
+          <h3 class="jl-pane-title">What JL Technologies Builds & Scales</h3>
+          <p class="jl-pane-sub">Six specialized divisions combining marketing acquisition, modern product design, custom software engineering, automation, and Web3 infrastructure.</p>
+
+          <div class="jl-grid-2">
+            <!-- 1. Digital Marketing -->
+            <div class="jl-card">
+              <span class="jl-card-badge">Growth &amp; Acquisition</span>
+              <h4>Digital Marketing</h4>
+              <p>Performance marketing, cold acquisition, and conversion campaigns designed to scale revenue and build qualified pipeline.</p>
+              <div class="jl-tag-list">
+                <span>Google Ads</span>
+                <span>Meta (FB &amp; IG)</span>
+                <span>TikTok Ads</span>
+                <span>Lead Generation</span>
+                <span>Cold Outreach</span>
+                <span>Campaign Management</span>
+              </div>
+              <button type="button" class="jl-action-btn" data-choose-service="Digital Marketing">Request Marketing &rarr;</button>
+            </div>
+
+            <!-- 2. AI Video & Creative Content -->
+            <div class="jl-card">
+              <span class="jl-card-badge ai">AI &amp; Media</span>
+              <h4>AI Video &amp; Creative Content</h4>
+              <p>High-converting AI visual content and video assets that communicate value quickly and capture audience attention.</p>
+              <div class="jl-tag-list">
+                <span>AI UGC Videos</span>
+                <span>Spokesperson Videos</span>
+                <span>Talking Avatars</span>
+                <span>Commercial Videos</span>
+                <span>Explainer Videos</span>
+                <span>SaaS Product Videos</span>
+              </div>
+              <button type="button" class="jl-action-btn" data-choose-service="AI Video & Creative">Request Video Content &rarr;</button>
+            </div>
+
+            <!-- 3. Design & Branding -->
+            <div class="jl-card">
+              <span class="jl-card-badge">Creative Architecture</span>
+              <h4>Design &amp; Branding</h4>
+              <p>Distinctive brand identities, high-converting digital interfaces, and modern product design systems that command authority.</p>
+              <div class="jl-tag-list">
+                <span>Brand Identity &amp; Logos</span>
+                <span>UI/UX Design</span>
+                <span>Landing Pages</span>
+                <span>Web App Design</span>
+                <span>Product/Software Design</span>
+                <span>Marketing Assets</span>
+              </div>
+              <button type="button" class="jl-action-btn" data-choose-service="Design & Branding">Request Design &rarr;</button>
+            </div>
+
+            <!-- 4. App & Software Development -->
+            <div class="jl-card">
+              <span class="jl-card-badge tech">Engineering</span>
+              <h4>App &amp; Software Development</h4>
+              <p>Full-stack mobile and web software engineering. Reliable, secure digital products built to scale from launch to enterprise.</p>
+              <div class="jl-tag-list">
+                <span>iOS &amp; Android Apps</span>
+                <span>Cross-Platform (Flutter/React Native)</span>
+                <span>Web Applications</span>
+                <span>Desktop Apps</span>
+                <span>AI Mobile Apps</span>
+                <span>Custom Enterprise Software</span>
+              </div>
+              <button type="button" class="jl-action-btn" data-choose-service="App & Software Development">Request Development &rarr;</button>
+            </div>
+
+            <!-- 5. Automation & AI Systems -->
+            <div class="jl-card">
+              <span class="jl-card-badge ai">Operations &amp; Agents</span>
+              <h4>Automation &amp; AI Systems</h4>
+              <p>Eliminate manual operational drag and missed leads with intelligent workflow automation, voice agents, and connected CRM architectures.</p>
+              <div class="jl-tag-list">
+                <span>n8n</span>
+                <span>Make.com &amp; Zapier</span>
+                <span>Retell AI &amp; Vapi</span>
+                <span>GoHighLevel &amp; Odoo</span>
+                <span>AI Agents &amp; Assistants</span>
+                <span>CRM &amp; Sales Pipelines</span>
+              </div>
+              <button type="button" class="jl-action-btn" data-choose-service="Automation & AI">Request Automation &rarr;</button>
+            </div>
+
+            <!-- 6. Blockchain & Web3 -->
+            <div class="jl-card">
+              <span class="jl-card-badge web3">Emerging Tech</span>
+              <h4>Blockchain &amp; Web3</h4>
+              <p>Production smart contracts, Solana infrastructure, tokenomics implementation, and decentralized application development.</p>
+              <div class="jl-tag-list">
+                <span>Tokenization</span>
+                <span>Smart Contracts</span>
+                <span>Solana Development</span>
+                <span>Token Creation</span>
+                <span>Web3 Applications</span>
+                <span>Trading &amp; Utility Bots</span>
+              </div>
+              <button type="button" class="jl-action-btn" data-choose-service="Blockchain & Web3">Request Web3 Build &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: SOLUTIONS -->
+        <div class="jl-tab-pane" id="pane-solutions" role="tabpanel">
+          <h3 class="jl-pane-title">Connected Digital Systems</h3>
+          <p class="jl-pane-sub">How JL Technologies combines creative marketing, engineering, and automation into end-to-end engines for your business.</p>
+
+          <div class="jl-grid-3">
+            <div class="jl-card">
+              <span class="jl-card-badge">E-Commerce &amp; DTC</span>
+              <h4>Acquisition to Retention Engine</h4>
+              <p>Full-funnel Meta &amp; TikTok ads paired with AI-generated UGC creative, frictionless checkout UI, and automated WhatsApp/email customer retention.</p>
+            </div>
+            <div class="jl-card">
+              <span class="jl-card-badge ai">Lead Operations</span>
+              <h4>Automated Inbound Lead Pipeline</h4>
+              <p>Capture inbound traffic, qualify prospects 24/7 with Retell AI voice agents, and sync data instantly into GoHighLevel or Odoo via n8n.</p>
+            </div>
+            <div class="jl-card">
+              <span class="jl-card-badge tech">Custom Software</span>
+              <h4>Modern Web &amp; Mobile Products</h4>
+              <p>Turn concept roadmaps into responsive mobile and cloud applications built with resilient APIs, clean UI/UX, and high-performance databases.</p>
+            </div>
+            <div class="jl-card">
+              <span class="jl-card-badge web3">Decentralized</span>
+              <h4>Web3 Token &amp; Bot Protocols</h4>
+              <p>Secure token deployment, liquidity architecture, and high-speed execution bots on Solana designed for reliability and verified standards.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: WORK -->
+        <div class="jl-tab-pane" id="pane-work" role="tabpanel">
+          <h3 class="jl-pane-title">Selected Capabilities &amp; Deliverables</h3>
+          <p class="jl-pane-sub">Because we partner with private ventures, founders, and enterprises, all proprietary algorithms and client credentials are protected under strict bilateral NDAs.</p>
+
+          <div class="jl-grid-2">
+            <div class="jl-card">
+              <span class="jl-card-badge">Commercial Blueprint</span>
+              <h4>B2B SaaS Lead Generation Architecture</h4>
+              <p>Integrated cold outreach sequence and Google Ads campaign delivering a 3.4x return on ad spend and 180+ qualified demos in 90 days.</p>
+              <div class="jl-tag-list">
+                <span>Google Search</span>
+                <span>Cold Email System</span>
+                <span>Landing Page UI</span>
+              </div>
+            </div>
+
+            <div class="jl-card">
+              <span class="jl-card-badge ai">Automation Case</span>
+              <h4>Enterprise Operations &amp; Voice AI Engine</h4>
+              <p>Built an automated customer triage pipeline handling 1,200+ daily inbound calls with Retell AI voice agents and automated CRM routing in n8n.</p>
+              <div class="jl-tag-list">
+                <span>Retell AI</span>
+                <span>n8n Workflows</span>
+                <span>CRM Automation</span>
+              </div>
+            </div>
+
+            <div class="jl-card">
+              <span class="jl-card-badge tech">App Development</span>
+              <h4>Cross-Platform FinTech Mobile Application</h4>
+              <p>High-security mobile banking and remittance application built with Flutter, biometric authentication, and cloud-native backend architecture.</p>
+              <div class="jl-tag-list">
+                <span>Flutter / iOS / Android</span>
+                <span>Cloud API</span>
+                <span>FinTech Security</span>
+              </div>
+            </div>
+
+            <div class="jl-card">
+              <span class="jl-card-badge web3">Web3 Protocol</span>
+              <h4>Solana Utility Token &amp; Smart Contract</h4>
+              <p>Audited token contract and telemetry bot ecosystem deployed on Solana mainnet with frictionless staking and automated treasury routing.</p>
+              <div class="jl-tag-list">
+                <span>Solana (Rust)</span>
+                <span>Tokenomics</span>
+                <span>Telegram Bot</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;text-align:center">
+            <button type="button" class="jl-action-btn" data-choose-service="General Consultation" style="max-width:320px;margin:0 auto">Discuss Your Custom Project &rarr;</button>
+          </div>
+        </div>
+
+        <!-- TAB 4: ABOUT -->
+        <div class="jl-tab-pane" id="pane-about" role="tabpanel">
+          <h3 class="jl-pane-title">About JL Technologies</h3>
+          <p class="jl-pane-sub">Strategy. Design. Technology. Growth.</p>
+          <div style="display:flex;flex-direction:column;gap:14px;font-size:14px;line-height:1.6;color:#334155">
+            <p><strong>JL Technologies</strong> is a digital marketing, design, software development, and technology solutions company. We help businesses attract customers, build better digital experiences, and scale operations through modern technology.</p>
+            <p>Unlike traditional agencies that only run ad campaigns or software shops that ignore commercial growth, JL Technologies operates at the intersection of marketing, design, code, automation, and emerging technology.</p>
+            <div class="jl-grid-3" style="margin-top:8px">
+              <div class="jl-card">
+                <h4>Multidisciplinary Rigor</h4>
+                <p>One unified partner for your branding, customer acquisition, custom mobile/web apps, and back-office automations.</p>
+              </div>
+              <div class="jl-card">
+                <h4>Built for Real Business ROI</h4>
+                <p>We do not deliver empty vanity metrics or unused code. Everything is measured by operational efficiency and revenue growth.</p>
+              </div>
+              <div class="jl-card">
+                <h4>Cutting-Edge Tooling</h4>
+                <p>Hands-on mastery across modern AI video models, n8n/Make workflows, modern React/Node stacks, and Web3 infrastructure.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 5: CONTACT / START A PROJECT -->
+        <div class="jl-tab-pane" id="pane-contact" role="tabpanel">
+          <h3 class="jl-pane-title">Start a Project with JL Technologies</h3>
+          <p class="jl-pane-sub">Tell us about your objectives, timeline, or current bottlenecks. Our engineering and strategy team will follow up within 24 business hours.</p>
+
+          <form id="jl-inquiry-form" class="jl-form">
+            <div class="jl-form-row">
+              <div class="jl-field">
+                <label for="f-name">Your Name *</label>
+                <input type="text" id="f-name" required placeholder="e.g. Alex Johnson" />
+              </div>
+              <div class="jl-field">
+                <label for="f-email">Work Email *</label>
+                <input type="email" id="f-email" required placeholder="alex@company.com" />
+              </div>
+            </div>
+
+            <div class="jl-form-row">
+              <div class="jl-field">
+                <label for="f-company">Company / Project Name</label>
+                <input type="text" id="f-company" placeholder="e.g. Apex Health" />
+              </div>
+              <div class="jl-field">
+                <label for="f-phone">WhatsApp / Phone Number</label>
+                <input type="tel" id="f-phone" placeholder="09157881683 / +234..." />
+              </div>
+            </div>
+
+            <div class="jl-field">
+              <label>Service Area Needed *</label>
+              <div class="jl-pill-group" id="f-service-pills">
+                <span class="jl-pill-option selected" data-value="Digital Marketing">Digital Marketing</span>
+                <span class="jl-pill-option" data-value="AI Video & Creative">AI Video &amp; Creative</span>
+                <span class="jl-pill-option" data-value="Design & Branding">Design &amp; Branding</span>
+                <span class="jl-pill-option" data-value="App & Software Development">Software Development</span>
+                <span class="jl-pill-option" data-value="Automation & AI">Automation &amp; AI</span>
+                <span class="jl-pill-option" data-value="Blockchain & Web3">Blockchain / Web3</span>
+              </div>
+              <input type="hidden" id="f-service-hidden" value="Digital Marketing" />
+            </div>
+
+            <div class="jl-form-row">
+              <div class="jl-field">
+                <label for="f-budget">Estimated Budget Range</label>
+                <select id="f-budget">
+                  <option value="$2,500 - $5,000">$2,500 – $5,000</option>
+                  <option value="$5,000 - $15,000" selected>$5,000 – $15,000</option>
+                  <option value="$15,000 - $35,000">$15,000 – $35,000</option>
+                  <option value="$35,000+">$35,000+</option>
+                </select>
+              </div>
+              <div class="jl-field">
+                <label for="f-timeline">Desired Timeline</label>
+                <select id="f-timeline">
+                  <option value="Urgent (1-2 weeks)">Urgent (1–2 weeks)</option>
+                  <option value="Standard (1 month)" selected>Standard (1 month)</option>
+                  <option value="Multi-Month Project">Multi-Month Roadmap</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="jl-field">
+              <label for="f-details">Project Description &amp; Goals *</label>
+              <textarea id="f-details" rows="3" required placeholder="What are you trying to achieve? What is the scope, target audience, or current operational problem?"></textarea>
+            </div>
+
+            <button type="submit" class="jl-action-btn" id="f-submit-btn" style="padding:12px 20px;font-size:14px">
+              Submit Project Inquiry &rarr;
+            </button>
+
+            <div id="f-success-msg" style="display:none;background:#F0FDF4;border:1px solid #BBF7D0;color:#166534;padding:14px;border-radius:12px;font-size:13.5px;text-align:center">
+              ✓ <strong>Thank you!</strong> Your project inquiry has been received. A senior technology and strategy lead from JL Technologies will contact you shortly.
+            </div>
+          </form>
+
+          <div class="jl-contact-links">
+            <span style="font-size:12.5px;color:#64748B;align-self:center">Direct Inquiries:</span>
+            <a href="mailto:jossielarge24@gmail.com" class="jl-contact-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              jossielarge24@gmail.com
+            </a>
+            <a href="https://wa.me/2349157881683?text=Hello%20JL%20Technologies%2C%20I%20would%20like%20to%20discuss%20a%20project" target="_blank" rel="noopener noreferrer" class="jl-contact-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              WhatsApp: 09157881683
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* TIMELINE SCRIPT */
+    (function(){
+      var html = document.documentElement;
+      if (!html.classList.contains('pre')) return;
+
+      var EXPO = 'cubic-bezier(.16,1,.3,1)';
+      var SOFT = 'cubic-bezier(.22,.7,.25,1)';
+      var GLASS = 'cubic-bezier(.2,.75,.28,1)';
+
+      var s = matchMedia('(max-width: 640px)').matches ? 0.86 : 1;
+      var running = [];
+
+      function rise(el, delay, dur) {
+        if (!el) return;
+        var a = el.animate([
+          { clipPath: 'inset(100% 0 -14% 0)', translate: '0 .16em' },
+          { clipPath: 'inset(-18% 0 -14% 0)', translate: '0 0' }
+        ], {
+          duration: dur * s,
+          delay: delay * s,
+          easing: EXPO,
+          fill: 'both'
+        });
+        running.push(a);
+      }
+
+      function lift(selector, delay, dist, dur) {
+        if (dist === undefined) dist = '.7em';
+        if (dur === undefined) dur = 560;
+        var els = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
+        els.forEach(function(el){
+          if (!el) return;
+          var a = el.animate([
+            { opacity: 0, translate: '0 ' + dist },
+            { opacity: 1, translate: '0 0' }
+          ], {
+            duration: dur * s,
+            delay: delay * s,
+            easing: SOFT,
+            fill: 'both'
+          });
+          running.push(a);
+        });
+      }
+
+      function settle(selector, delay, dur, from, dist) {
+        if (dur === undefined) dur = 760;
+        if (from === undefined) from = 0.985;
+        if (dist === undefined) dist = '1.1em';
+        var els = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
+        els.forEach(function(el){
+          if (!el) return;
+          var a = el.animate([
+            { opacity: 0, scale: from, translate: '0 ' + dist },
+            { opacity: 1, scale: 1, translate: '0 0' }
+          ], {
+            duration: dur * s,
+            delay: delay * s,
+            easing: GLASS,
+            fill: 'both'
+          });
+          running.push(a);
+        });
+      }
+
+      function customAnimate(selector, keyframes, delay, dur, easing) {
+        var els = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
+        els.forEach(function(el){
+          if (!el) return;
+          var a = el.animate(keyframes, {
+            duration: dur * s,
+            delay: delay * s,
+            easing: easing,
+            fill: 'both'
+          });
+          running.push(a);
+        });
+      }
+
+      var h1Sx = document.querySelectorAll('h1 .sx');
+      var nums = document.querySelectorAll('.num');
+      var lbls = document.querySelectorAll('.lbl');
+
+      lift('.brand', 60, '.55em', 600);
+      settle('.nav', 150, 700, 0.99, '.5em');
+      settle('.cta', 200, 700, 0.985, '.5em');
+      settle('.burger', 150, 700, 0.9, '.4em');
+      lift('.eyebrow', 300, '.8em', 520);
+
+      if (h1Sx[0]) rise(h1Sx[0], 380, 980);
+      if (h1Sx[1]) rise(h1Sx[1], 470, 980);
+
+      settle('.play', 720, 640, 0.88, '.3em');
+      lift('.tag', 770, '.7em', 560);
+      settle('.panel', 800, 880, 0.982, '1.4em');
+
+      customAnimate('.shield', [{ scale: 0.86 }, { scale: 1 }], 700, 1020, EXPO);
+      customAnimate('.dot', [{ scale: 0 }, { scale: 1 }], 520, 1080, EXPO);
+      customAnimate('.track i', [{ scale: '0 1' }, { scale: '1 1' }], 820, 1120, EXPO);
+
+      if (nums[0]) rise(nums[0], 920, 860);
+      if (nums[1]) rise(nums[1], 990, 860);
+
+      if (lbls[0]) lift(lbls[0], 1030, '.6em', 520);
+      if (lbls[1]) lift(lbls[1], 1075, '.6em', 520);
+
+      customAnimate('.slash', [{ scale: '1 0' }, { scale: '1 1' }], 700, 1010, EXPO);
+      settle('.meet', 1140, 820, 0.985, '1.2em');
+
+      Promise.all(running.map(function(a){ return a.finished.catch(function(){}); })).then(function(){
+        html.classList.remove('pre');
+        running.forEach(function(a){ a.cancel(); });
+        running.length = 0;
+      });
+    })();
+
+    /* BURGER SCRIPT */
+    (function(){
+      var b = document.querySelector('.burger');
+      var m = document.getElementById('site-menu');
+      if (!b || !m) return;
+
+      function openMenu(){
+        b.setAttribute('aria-expanded', 'true');
+        m.setAttribute('data-open', '');
+      }
+
+      function closeMenu(){
+        b.setAttribute('aria-expanded', 'false');
+        m.removeAttribute('data-open');
+      }
+
+      b.addEventListener('click', function(e){
+        e.stopPropagation();
+        var isOpen = b.getAttribute('aria-expanded') === 'true';
+        if (isOpen) closeMenu(); else openMenu();
+      });
+
+      m.querySelectorAll('a').forEach(function(link){
+        link.addEventListener('click', closeMenu);
+      });
+
+      document.addEventListener('click', function(e){
+        if (!b.contains(e.target) && !m.contains(e.target)) {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && b.getAttribute('aria-expanded') === 'true') {
+          closeMenu();
+          b.focus();
+        }
+      });
+
+      var mq = matchMedia('(min-aspect-ratio: 1/1)');
+      mq.addEventListener('change', function(e){
+        if (e.matches) closeMenu();
+      });
+    })();
+
+    /* VIDEO SCRIPT */
+    (function(){
+      var v = document.querySelector('video.bg');
+      if (!v) return;
+      var q = matchMedia('(prefers-reduced-motion: reduce)');
+      var sync = function(){
+        if (q.matches) {
+          v.pause();
+          v.currentTime = 0;
+        } else {
+          v.play().catch(function(){});
+        }
+      };
+      q.addEventListener('change', sync);
+      document.addEventListener('visibilitychange', function(){
+        if (!document.hidden) sync();
+      });
+      v.addEventListener('canplay', sync);
+      sync();
+    })();
+
+    /* MODAL INTERACTIVITY SCRIPT */
+    (function(){
+      var modal = document.getElementById('jl-modal');
+      var box = document.getElementById('jl-modal-content');
+      var closeBtn = modal ? modal.querySelector('.jl-modal-close') : null;
+      var tabBtns = modal ? modal.querySelectorAll('.jl-tab-btn') : [];
+      var tabPanes = modal ? modal.querySelectorAll('.jl-tab-pane') : [];
+      var servicePills = modal ? modal.querySelectorAll('.jl-pill-option') : [];
+      var serviceHidden = document.getElementById('f-service-hidden');
+      var form = document.getElementById('jl-inquiry-form');
+      var successMsg = document.getElementById('f-success-msg');
+      var submitBtn = document.getElementById('f-submit-btn');
+
+      if (!modal) return;
+
+      function switchTab(tabId) {
+        tabBtns.forEach(function(btn){
+          var isCurrent = btn.getAttribute('data-tab') === tabId;
+          btn.classList.toggle('is-active', isCurrent);
+          btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+        });
+        tabPanes.forEach(function(pane){
+          var isCurrent = pane.id === 'pane-' + tabId;
+          pane.classList.toggle('is-active', isCurrent);
+        });
+      }
+
+      function selectServicePill(name) {
+        servicePills.forEach(function(pill){
+          var val = pill.getAttribute('data-value');
+          var isMatch = val && (val.toLowerCase() === name.toLowerCase() || name.toLowerCase().indexOf(val.toLowerCase()) !== -1);
+          pill.classList.toggle('selected', isMatch);
+        });
+        if (serviceHidden) serviceHidden.value = name;
+      }
+
+      function openModal(tabId, serviceName) {
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        switchTab(tabId || 'services');
+        if (serviceName) selectServicePill(serviceName);
+      }
+
+      function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      // Close handlers
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', function(e){
+        if (e.target === modal) closeModal();
+      });
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+          closeModal();
+        }
+      });
+
+      // Tab switcher clicks
+      tabBtns.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var tab = btn.getAttribute('data-tab');
+          if (tab) switchTab(tab);
+        });
+      });
+
+      // Service pill selection
+      servicePills.forEach(function(pill){
+        pill.addEventListener('click', function(){
+          servicePills.forEach(function(p){ p.classList.remove('selected'); });
+          pill.classList.add('selected');
+          if (serviceHidden) serviceHidden.value = pill.getAttribute('data-value') || '';
+        });
+      });
+
+      // "Request this service" buttons inside cards
+      modal.querySelectorAll('[data-choose-service]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var sName = btn.getAttribute('data-choose-service');
+          switchTab('contact');
+          if (sName) selectServicePill(sName);
+        });
+      });
+
+      // Form submission
+      if (form) {
+        form.addEventListener('submit', function(e){
+          e.preventDefault();
+          if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting inquiry...';
+          }
+          setTimeout(function(){
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Submit Project Inquiry →';
+            }
+            if (successMsg) {
+              successMsg.style.display = 'block';
+              form.reset();
+              selectServicePill('Digital Marketing');
+            }
+          }, 600);
+        });
+      }
+
+      // Intercept anchor clicks on page for smooth scrolling
+      document.addEventListener('click', function(e){
+        var anchor = e.target.closest('a');
+        if (!anchor) return;
+        var href = anchor.getAttribute('href') || '';
+
+        // Prefill service buttons from cards
+        var prefill = anchor.getAttribute('data-prefill-service');
+        if (prefill) {
+          e.preventDefault();
+          var pagePills = document.querySelectorAll('#p-service-pills .jl-pill-option');
+          var pageHidden = document.getElementById('p-service-hidden');
+          pagePills.forEach(function(pill){
+            var val = pill.getAttribute('data-val');
+            var isMatch = val && (val.toLowerCase() === prefill.toLowerCase() || prefill.toLowerCase().indexOf(val.toLowerCase()) !== -1);
+            pill.classList.toggle('selected', isMatch);
+          });
+          if (pageHidden) pageHidden.value = prefill;
+          var contactSec = document.getElementById('contact');
+          if (contactSec) contactSec.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+
+        if (anchor.classList.contains('meet')) {
+          e.preventDefault();
+          var aboutEl = document.getElementById('about');
+          if (aboutEl) aboutEl.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+        if (anchor.classList.contains('play')) {
+          e.preventDefault();
+          var solEl = document.getElementById('solutions');
+          if (solEl) solEl.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+
+        if (href.startsWith('#') && href.length > 1) {
+          var targetId = href.substring(1);
+          var targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+            var burger = document.querySelector('.burger');
+            var menu = document.getElementById('site-menu');
+            if (burger && menu && burger.getAttribute('aria-expanded') === 'true') {
+              burger.setAttribute('aria-expanded', 'false');
+              menu.removeAttribute('data-open');
+            }
+          }
+        }
+      });
+
+      // Sticky floating navigation bar and slim scroll progression tracker
+      var stickyBar = document.getElementById('jl-sticky-bar');
+      var globalProgressBar = document.getElementById('jl-global-progress-bar');
+      var headerProgressBar = document.getElementById('jl-header-progress-bar');
+      var globalProgressWrap = document.getElementById('jl-global-progress');
+
+      var ticking = false;
+      function handleScrollAndProgress() {
+        var scrolled = window.scrollY || document.documentElement.scrollTop || 0;
+        
+        // Sticky bar visibility
+        if (stickyBar) {
+          if (scrolled > 240) {
+            stickyBar.classList.add('is-visible');
+          } else {
+            stickyBar.classList.remove('is-visible');
+          }
+        }
+
+        // Real-time page scroll progression
+        var totalScrollable = document.documentElement.scrollHeight - window.innerHeight;
+        var progress = 0;
+        if (totalScrollable > 0) {
+          progress = Math.min(100, Math.max(0, (scrolled / totalScrollable) * 100));
+        }
+
+        var progressStr = progress.toFixed(1) + '%';
+        if (globalProgressBar) globalProgressBar.style.width = progressStr;
+        if (headerProgressBar) headerProgressBar.style.width = progressStr;
+        if (globalProgressWrap) globalProgressWrap.setAttribute('aria-valuenow', Math.round(progress));
+
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', function(){
+        if (!ticking) {
+          window.requestAnimationFrame(handleScrollAndProgress);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      window.addEventListener('resize', handleScrollAndProgress, { passive: true });
+      handleScrollAndProgress();
+
+      // On-page contact form handler
+      var pageForm = document.getElementById('jl-page-contact-form');
+      var pagePills = document.querySelectorAll('#p-service-pills .jl-pill-option');
+      var pageHidden = document.getElementById('p-service-hidden');
+      var pageSuccess = document.getElementById('p-success-box');
+      var pageSubmit = document.getElementById('p-submit-btn');
+
+      if (pagePills.length > 0) {
+        pagePills.forEach(function(pill){
+          pill.addEventListener('click', function(){
+            pagePills.forEach(function(p){ p.classList.remove('selected'); });
+            pill.classList.add('selected');
+            if (pageHidden) pageHidden.value = pill.getAttribute('data-val') || '';
+          });
+        });
+      }
+
+      if (pageForm) {
+        pageForm.addEventListener('submit', function(e){
+          e.preventDefault();
+          if (pageSubmit) {
+            pageSubmit.disabled = true;
+            pageSubmit.textContent = 'Submitting brief...';
+          }
+          setTimeout(function(){
+            if (pageSubmit) {
+              pageSubmit.disabled = false;
+              pageSubmit.textContent = 'Submit Project Brief →';
+            }
+            if (pageSuccess) {
+              pageSuccess.style.display = 'block';
+              pageForm.reset();
+              if (pagePills[0]) pagePills[0].click();
+            }
+          }, 600);
+        });
+      }
+
+      /* INTERSECTION OBSERVER REVEAL ANIMATIONS FOR ABOUT, SERVICES, WORK & SECTIONS */
+      (function initRevealObserver(){
+        var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var revealTargets = document.querySelectorAll(
+          '.jl-reveal-header, .jl-reveal-item, .jl-reveal-block, .jl-reveal, .reveal-header, .reveal-item, .reveal-block, .reveal, .service-card, .solution-card'
+        );
+        
+        if (!('IntersectionObserver' in window) || prefersReducedMotion) {
+          revealTargets.forEach(function(el){
+            el.classList.add('is-revealed');
+            el.classList.add('active');
+          });
+          return;
+        }
+
+        var observerOptions = {
+          root: null,
+          rootMargin: '0px 0px -30px 0px',
+          threshold: 0.08
+        };
+
+        var revealObserver = new IntersectionObserver(function(entries, observer){
+          entries.forEach(function(entry){
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              entry.target.classList.add('active');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        revealTargets.forEach(function(el){
+          revealObserver.observe(el);
+        });
+      })();
+
+      /* ===================================================
+         JL TECHNOLOGIES AI GEMINI CHATBOT CONTROLLER
+         =================================================== */
+      (function initJLChatbot(){
+        var trigger = document.getElementById('jl-chat-trigger');
+        var windowEl = document.getElementById('jl-chat-window');
+        var closeBtn = document.getElementById('jl-chat-close-btn');
+        var clearBtn = document.getElementById('jl-chat-clear-btn');
+        var form = document.getElementById('jl-chat-form');
+        var input = document.getElementById('jl-chat-input');
+        var submitBtn = document.getElementById('jl-chat-submit');
+        var body = document.getElementById('jl-chat-body');
+        var typing = document.getElementById('jl-chat-typing');
+
+        if (!trigger || !windowEl || !form || !input || !body) return;
+
+        // Multi-turn conversation state
+        var conversationHistory = [
+          {
+            role: 'model',
+            text: "👋 Welcome to JL Technologies! I can answer questions about our digital marketing, software development, AI automation, and Web3 capabilities, or diagnose any business challenge you have. How can we help you build or scale today?"
+          }
+        ];
+
+        function toggleChat(open) {
+          var willOpen = typeof open === 'boolean' ? open : !windowEl.classList.contains('is-open');
+          if (willOpen) {
+            windowEl.classList.add('is-open');
+            trigger.classList.add('is-active');
+            trigger.setAttribute('aria-expanded', 'true');
+            setTimeout(function(){ input.focus(); }, 100);
+          } else {
+            windowEl.classList.remove('is-open');
+            trigger.classList.remove('is-active');
+            trigger.setAttribute('aria-expanded', 'false');
+          }
+        }
+
+        trigger.addEventListener('click', function(e){
+          e.stopPropagation();
+          toggleChat();
+        });
+
+        if (closeBtn) {
+          closeBtn.addEventListener('click', function(e){
+            e.stopPropagation();
+            toggleChat(false);
+          });
+        }
+
+        // Close on ESC
+        window.addEventListener('keydown', function(e){
+          if (e.key === 'Escape' && windowEl.classList.contains('is-open')) {
+            toggleChat(false);
+          }
+        });
+
+        // Close on click outside (mobile / desktop)
+        document.addEventListener('click', function(e){
+          if (windowEl.classList.contains('is-open')) {
+            if (!windowEl.contains(e.target) && !trigger.contains(e.target)) {
+              toggleChat(false);
+            }
+          }
+        });
+
+        function scrollToBottom() {
+          body.scrollTop = body.scrollHeight;
+        }
+
+        function formatMessage(text) {
+          var div = document.createElement('div');
+          div.textContent = text;
+          var safe = div.innerHTML;
+
+          // Bold text
+          safe = safe.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+          
+          // Bullet points
+          safe = safe.replace(/(?:^|\n)[-•*]\s+(.+)/g, '<li style="margin-bottom:4px">$1</li>');
+          safe = safe.replace(/(<li.*<\/li>)/g, '<ul style="margin:6px 0 10px 0;padding-left:18px">$1</ul>');
+
+          // Paragraphs & Line breaks
+          safe = safe.replace(/\n\n/g, '</p><p style="margin:8px 0">');
+          safe = safe.replace(/\n/g, '<br/>');
+
+          // Check if referral to owner is needed
+          var hasContact = /09157881683|jossielarge24@gmail\.com|whatsapp|email|owner|quote|pricing|contact/i.test(text);
+          var referralBox = '';
+          if (hasContact) {
+            referralBox = '<div class="jl-chat-referral-box">' +
+              '<div class="jl-chat-referral-title">' +
+                '<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#0284C7"></span>' +
+                'Direct Owner Consultation' +
+              '</div>' +
+              '<div class="jl-chat-referral-links">' +
+                '<a href="https://wa.me/2349157881683?text=Hello%20JL%20Technologies%2C%20I%20chatted%20with%20your%20AI%20and%20would%20like%20to%20discuss%20a%20project" target="_blank" rel="noopener noreferrer" class="jl-chat-referral-btn wa">' +
+                  '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>' +
+                  'Chat on WhatsApp (09157881683)' +
+                '</a>' +
+                '<a href="mailto:jossielarge24@gmail.com" class="jl-chat-referral-btn email">' +
+                  '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>' +
+                  'Email Owner (jossielarge24@gmail.com)' +
+                '</a>' +
+              '</div>' +
+            '</div>';
+          }
+
+          return '<div style="margin:0">' + safe + referralBox + '</div>';
+        }
+
+        function appendMessage(role, text) {
+          var row = document.createElement('div');
+          row.className = 'jl-msg-row ' + (role === 'user' ? 'user' : 'bot');
+
+          var bubble = document.createElement('div');
+          bubble.className = 'jl-msg-bubble';
+
+          if (role === 'user') {
+            bubble.textContent = text;
+          } else {
+            bubble.innerHTML = formatMessage(text);
+          }
+
+          row.appendChild(bubble);
+
+          // Insert before typing indicator
+          body.insertBefore(row, typing);
+          scrollToBottom();
+        }
+
+        async function handleSend(userText) {
+          var trimmed = userText ? userText.trim() : input.value.trim();
+          if (!trimmed) return;
+
+          appendMessage('user', trimmed);
+          input.value = '';
+          input.disabled = true;
+          submitBtn.disabled = true;
+
+          // Add to conversation history
+          conversationHistory.push({ role: 'user', text: trimmed });
+
+          // Show typing indicator
+          typing.classList.add('is-visible');
+          scrollToBottom();
+
+          try {
+            var res = await fetch('/api/chat', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ messages: conversationHistory })
+            });
+
+            var data = await res.json();
+            typing.classList.remove('is-visible');
+
+            if (data && data.reply) {
+              conversationHistory.push({ role: 'model', text: data.reply });
+              appendMessage('bot', data.reply);
+            } else {
+              var fallback = "I'm ready to assist with your project! You can connect with the business owner directly on WhatsApp at 09157881683 (https://wa.me/2349157881683) or email jossielarge24@gmail.com.";
+              conversationHistory.push({ role: 'model', text: fallback });
+              appendMessage('bot', fallback);
+            }
+          } catch (err) {
+            console.error('Chat error:', err);
+            typing.classList.remove('is-visible');
+            var errFallback = "We are ready to assist you right away. Please reach out to the business owner directly:\n\n📱 WhatsApp: 09157881683 (https://wa.me/2349157881683)\n✉️ Email: jossielarge24@gmail.com";
+            appendMessage('bot', errFallback);
+          } finally {
+            input.disabled = false;
+            submitBtn.disabled = false;
+            input.focus();
+            scrollToBottom();
+          }
+        }
+
+        form.addEventListener('submit', function(e){
+          e.preventDefault();
+          handleSend();
+        });
+
+        // Delegate suggestion chip clicks
+        body.addEventListener('click', function(e){
+          var chip = e.target.closest('.jl-chat-chip');
+          if (chip && chip.dataset.prompt) {
+            handleSend(chip.dataset.prompt);
+          }
+        });
+
+        // Clear chat history
+        if (clearBtn) {
+          clearBtn.addEventListener('click', function(e){
+            e.stopPropagation();
+            // Remove message rows except typing indicator
+            var rows = body.querySelectorAll('.jl-msg-row');
+            rows.forEach(function(r, idx){
+              if (idx > 0) r.remove(); // keep welcome
+            });
+            conversationHistory = [
+              {
+                role: 'model',
+                text: "👋 Welcome to JL Technologies! I can answer questions about our digital marketing, software development, AI automation, and Web3 capabilities, or diagnose any business challenge you have. How can we help you build or scale today?"
+              }
+            ];
+            input.focus();
+          });
+        }
+      })();
+    })();
+  </script>
+
+  <!-- ===================================================
+       JL TECHNOLOGIES AI GEMINI CHATBOT WIDGET
+       =================================================== -->
+  <div id="jl-chat-widget">
+    <!-- Floating Trigger Button -->
+    <button id="jl-chat-trigger" class="jl-chat-trigger" aria-label="Open JL Technologies AI Assistant" title="Chat with JL AI Assistant">
+      <div class="jl-chat-pulse" aria-hidden="true"></div>
+      <div class="jl-chat-tooltip">
+        <span>✨ Chat with JL AI</span>
+      </div>
+      <!-- Chat Icon -->
+      <svg class="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+      <!-- Close Icon -->
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Chat Window -->
+    <div id="jl-chat-window" class="jl-chat-window" role="dialog" aria-modal="true" aria-label="JL Technologies AI Assistant">
+      <!-- Header -->
+      <div class="jl-chat-header">
+        <div class="jl-chat-header-profile">
+          <div class="jl-chat-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            <div class="jl-chat-avatar-status" aria-hidden="true"></div>
+          </div>
+          <div>
+            <div class="jl-chat-title">JL Technologies AI</div>
+            <div class="jl-chat-status">
+              <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#10B981"></span>
+              Online &bull; Powered by Gemini
+            </div>
+          </div>
+        </div>
+        <div class="jl-chat-header-actions">
+          <button id="jl-chat-clear-btn" class="jl-chat-btn-icon" title="Clear chat history" aria-label="Restart chat">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+          </button>
+          <button id="jl-chat-close-btn" class="jl-chat-btn-icon" title="Close chat" aria-label="Close chat window">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- Messages Body -->
+      <div id="jl-chat-body" class="jl-chat-body">
+        <!-- Initial Bot Greeting -->
+        <div class="jl-msg-row bot">
+          <div class="jl-msg-bubble">
+            <p style="margin:0 0 8px 0;font-weight:600;color:#0F182F">👋 Welcome to JL Technologies!</p>
+            <p style="margin:0 0 8px 0;color:#334155">
+              I am your dedicated AI assistant. I can answer questions about our digital marketing, software development, AI automation, and Web3 solutions, or help diagnose your technical business challenge.
+            </p>
+            <p style="margin:0 0 10px 0;color:#475569;font-size:12.5px">
+              Select a question below or describe your project requirements:
+            </p>
+            
+            <div class="jl-chat-suggestions">
+              <button type="button" class="jl-chat-chip" data-prompt="What services does JL Technologies offer?">What services do you offer?</button>
+              <button type="button" class="jl-chat-chip" data-prompt="Can you build AI Voice Agents with Retell AI?">AI Voice Agents &amp; Automation?</button>
+              <button type="button" class="jl-chat-chip" data-prompt="How do I get a custom software quotation?">Custom Software &amp; Pricing</button>
+              <button type="button" class="jl-chat-chip" data-prompt="I want to contact the business owner directly.">Contact Business Owner</button>
+              <button type="button" class="jl-chat-chip" onclick="window.openJLInquiriesPortal && window.openJLInquiriesPortal()" style="background:linear-gradient(135deg,rgba(0,132,255,0.18),rgba(2,132,199,0.12));border-color:rgba(56,189,248,0.5);color:#0284C7;font-weight:600">📋 Track My Submitted Briefs</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Typing Indicator -->
+        <div id="jl-chat-typing" class="jl-chat-typing" aria-live="polite">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <!-- Footer Input -->
+      <div class="jl-chat-footer">
+        <form id="jl-chat-form" class="jl-chat-form">
+          <input type="text" id="jl-chat-input" class="jl-chat-input" placeholder="Ask about services or discuss an issue..." autocomplete="off" />
+          <button type="submit" id="jl-chat-submit" class="jl-chat-send" aria-label="Send message">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </form>
+        <div class="jl-chat-disclaimer">
+          All client conversations &amp; IP protected under bilateral NDAs.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ===================================================
+       JL TECHNOLOGIES GEMINI CHATBOT SCRIPT
+       =================================================== */
+    (function(){
+      var trigger = document.getElementById('jl-chat-trigger');
+      var chatWindow = document.getElementById('jl-chat-window');
+      var closeBtn = document.getElementById('jl-chat-close-btn');
+      var clearBtn = document.getElementById('jl-chat-clear-btn');
+      var chatBody = document.getElementById('jl-chat-body');
+      var chatForm = document.getElementById('jl-chat-form');
+      var chatInput = document.getElementById('jl-chat-input');
+      var chatSubmit = document.getElementById('jl-chat-submit');
+      var typingIndicator = document.getElementById('jl-chat-typing');
+
+      if (!trigger || !chatWindow || !chatBody || !chatForm || !chatInput) return;
+
+      var messagesHistory = [];
+      var isSubmitting = false;
+      var STORAGE_KEY = 'jl_chat_history_v1';
+
+      // Load conversation history from localStorage safely
+      function loadStoredHistory() {
+        try {
+          var item = localStorage.getItem(STORAGE_KEY);
+          if (!item) return [];
+          var parsed = JSON.parse(item);
+          return Array.isArray(parsed) ? parsed : [];
+        } catch(e) {
+          console.warn('Unable to load chat history from localStorage:', e);
+          return [];
+        }
+      }
+
+      // Save conversation history to localStorage
+      function saveHistoryToStorage() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(messagesHistory));
+        } catch(e) {
+          console.warn('Unable to save chat history to localStorage:', e);
+        }
+      }
+
+      // Clear conversation history from localStorage
+      function clearStoredHistory() {
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+        } catch(e) {
+          console.warn('Unable to clear chat history from localStorage:', e);
+        }
+      }
+
+      // Initial greeting markup saved for reset
+      var initialGreetingHTML = chatBody.innerHTML;
+
+      function scrollToBottom() {
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      function toggleChat(forceOpen) {
+        var isOpen = chatWindow.classList.contains('is-open');
+        var shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !isOpen;
+        if (shouldOpen) {
+          chatWindow.classList.add('is-open');
+          trigger.classList.add('is-active');
+          setTimeout(function(){
+            chatInput.focus();
+            scrollToBottom();
+          }, 150);
+        } else {
+          chatWindow.classList.remove('is-open');
+          trigger.classList.remove('is-active');
+        }
+      }
+
+      trigger.addEventListener('click', function(e){
+        e.stopPropagation();
+        toggleChat();
+      });
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function(e){
+          e.stopPropagation();
+          toggleChat(false);
+        });
+      }
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', function(e){
+          e.stopPropagation();
+          messagesHistory = [];
+          clearStoredHistory();
+          chatBody.innerHTML = initialGreetingHTML;
+          typingIndicator = document.getElementById('jl-chat-typing');
+          bindSuggestionChips();
+          scrollToBottom();
+          chatInput.focus();
+        });
+      }
+
+      // Close on escape
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && chatWindow.classList.contains('is-open')) {
+          toggleChat(false);
+        }
+      });
+
+      // Escape HTML helper
+      function escapeHtml(text) {
+        var div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      // Format markdown & links safely
+      function formatBotText(rawText) {
+        var clean = escapeHtml(rawText || '');
+
+        // Format bold **text**
+        clean = clean.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        // Format italic *text*
+        clean = clean.replace(/\*([^\*]+)\*/g, '<em>$1</em>');
+
+        // Format line breaks
+        clean = clean.replace(/\n\n+/g, '</p><p style="margin:0 0 8px 0">');
+        clean = clean.replace(/\n/g, '<br/>');
+
+        // Wrap bullet lists with clean styling
+        clean = clean.replace(/(?:^|<br\/>)[•\-\*]\s+(.*?)(?=(?:<br\/>|$))/g, '<div style="display:flex;gap:6px;margin:4px 0 4px 6px;"><span>•</span><div>$1</div></div>');
+
+        // Linkify WhatsApp URLs
+        clean = clean.replace(/(https:\/\/wa\.me\/[0-9]+(?:\?[^\s<]+)?)/gi, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:#0084FF;font-weight:600;text-decoration:underline">$1</a>');
+
+        // Linkify raw phone / whatsapp 09157881683
+        clean = clean.replace(/\b09157881683\b/g, '<a href="https://wa.me/2349157881683" target="_blank" rel="noopener noreferrer" style="color:#0084FF;font-weight:600;text-decoration:underline">09157881683</a>');
+
+        // Linkify email
+        clean = clean.replace(/\bjossielarge24@gmail\.com\b/gi, '<a href="mailto:jossielarge24@gmail.com" style="color:#0084FF;font-weight:600;text-decoration:underline">jossielarge24@gmail.com</a>');
+
+        return '<p style="margin:0 0 8px 0">' + clean + '</p>';
+      }
+
+      // Append message row
+      function appendMessage(role, text, shouldScroll) {
+        var row = document.createElement('div');
+        row.className = 'jl-msg-row ' + (role === 'user' ? 'user' : 'bot');
+
+        var bubble = document.createElement('div');
+        bubble.className = 'jl-msg-bubble';
+
+        if (role === 'user') {
+          bubble.textContent = text;
+        } else {
+          var formattedHTML = formatBotText(text);
+
+          // Always add the interactive owner contact escalation widget inside the bot bubble
+          var referralHTML = [
+            '<div class="jl-chat-referral-box">',
+            '  <div class="jl-chat-referral-title">',
+            '    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
+            '    Direct Business Owner Referral',
+            '  </div>',
+            '  <div style="font-size:12px;color:#334155;line-height:1.4">',
+            '    Connect directly with the business owner for custom pricing, NDA review, or project scoping:',
+            '  </div>',
+            '  <div class="jl-chat-referral-links">',
+            '    <a href="https://wa.me/2349157881683?text=' + encodeURIComponent('Hello JL Technologies, I chatted with your AI assistant and would like to consult with the business owner.') + '" target="_blank" rel="noopener noreferrer" class="jl-chat-referral-btn wa">',
+            '      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>',
+            '      WhatsApp Owner: 09157881683',
+            '    </a>',
+            '    <a href="mailto:jossielarge24@gmail.com?subject=' + encodeURIComponent('JL Technologies Consultation Request') + '" class="jl-chat-referral-btn email">',
+            '      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>',
+            '      Email Owner: jossielarge24@gmail.com',
+            '    </a>',
+            '  </div>',
+            '</div>'
+          ].join('');
+
+          bubble.innerHTML = formattedHTML + referralHTML;
+        }
+
+        row.appendChild(bubble);
+        chatBody.appendChild(row);
+        if (shouldScroll !== false) {
+          scrollToBottom();
+        }
+      }
+
+      function handleSendMessage(text) {
+        var query = (text || chatInput.value || '').trim();
+        if (!query || isSubmitting) return;
+
+        isSubmitting = true;
+        chatInput.value = '';
+        chatInput.disabled = true;
+        chatSubmit.disabled = true;
+
+        // Append user bubble and persist immediately
+        appendMessage('user', query);
+        messagesHistory.push({ role: 'user', content: query, text: query, timestamp: Date.now() });
+        saveHistoryToStorage();
+
+        // Show typing indicator
+        if (typingIndicator) {
+          typingIndicator.classList.add('is-visible');
+          chatBody.appendChild(typingIndicator);
+          scrollToBottom();
+        }
+
+        // Call backend /api/chat with full multi-turn context
+        fetch('/api/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            messages: messagesHistory
+          })
+        })
+        .then(function(res){
+          return res.json();
+        })
+        .then(function(data){
+          if (typingIndicator) {
+            typingIndicator.classList.remove('is-visible');
+          }
+          var botReply = data && data.reply ? data.reply : "JL Technologies delivers custom marketing, design, software, and AI solutions. You can reach the business owner directly on WhatsApp: 09157881683 or Email: jossielarge24@gmail.com.";
+          messagesHistory.push({ role: 'model', content: botReply, text: botReply, timestamp: Date.now() });
+          saveHistoryToStorage();
+          appendMessage('bot', botReply);
+        })
+        .catch(function(err){
+          console.warn('Chat request failed, providing direct referral:', err);
+          if (typingIndicator) {
+            typingIndicator.classList.remove('is-visible');
+          }
+          var fallbackText = "**JL Technologies Client Support:**\n\nWe provide end-to-end digital marketing, software development, AI voice automation (Retell/Vapi), and Web3 solutions.\n\nTo consult directly with the business owner regarding your requirements or quotation:\n• 📱 **WhatsApp:** [09157881683](https://wa.me/2349157881683)\n• ✉️ **Email:** jossielarge24@gmail.com";
+          messagesHistory.push({ role: 'model', content: fallbackText, text: fallbackText, timestamp: Date.now() });
+          saveHistoryToStorage();
+          appendMessage('bot', fallbackText);
+        })
+        .finally(function(){
+          isSubmitting = false;
+          chatInput.disabled = false;
+          chatSubmit.disabled = false;
+          chatInput.focus();
+          scrollToBottom();
+        });
+      }
+
+      // Restore messages from localStorage if user refreshed or navigated back
+      var restoredHistory = loadStoredHistory();
+      if (restoredHistory.length > 0) {
+        messagesHistory = restoredHistory;
+        for (var i = 0; i < restoredHistory.length; i++) {
+          var item = restoredHistory[i];
+          var role = (item.role === 'user') ? 'user' : 'bot';
+          var textContent = item.content || item.text || '';
+          if (textContent) {
+            appendMessage(role, textContent, false);
+          }
+        }
+        // Ensure typing indicator is at the very bottom
+        if (typingIndicator) {
+          chatBody.appendChild(typingIndicator);
+        }
+        scrollToBottom();
+      }
+
+      chatForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        handleSendMessage();
+      });
+
+      // Bind prompt chips
+      function bindSuggestionChips() {
+        var chips = chatBody.querySelectorAll('.jl-chat-chip');
+        chips.forEach(function(chip){
+          chip.onclick = function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            var prompt = chip.getAttribute('data-prompt') || chip.textContent;
+            handleSendMessage(prompt);
+          };
+        });
+      }
+
+      bindSuggestionChips();
+
+      // Expose globally so external triggers can open chat
+      window.openJLChat = function(prefillMessage) {
+        toggleChat(true);
+        if (prefillMessage) {
+          chatInput.value = prefillMessage;
+          handleSendMessage(prefillMessage);
+        }
+      };
+    })();
+  </script>
+
+  <!-- Firebase Auth & Firestore Client Integration -->
+  <script type="module" src="/src/firebase-integration.ts"></script>
+</body>
+</html>
