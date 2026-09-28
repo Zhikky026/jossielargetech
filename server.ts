@@ -78,11 +78,33 @@ Critical Behavioral Rules:
   ✉️ Email: jossielarge24@gmail.com"
 - Keep responses well-structured, warm, professional, concise, and focused on commercial value.`;
 
-      // Format messages into GoogleGenAI contents structure
-      const contents = messages.map((m: any) => ({
-        role: m.role === 'user' ? 'user' : 'model',
-        parts: [{ text: String(m.text || m.content || '') }],
-      }));
+      // Sanitize and format messages into GoogleGenAI contents structure with strictly alternating user/model turns
+      const rawFormatted = messages
+        .map((m: any) => ({
+          role: m.role === 'user' ? 'user' : 'model',
+          text: String(m.text || m.content || '').trim(),
+        }))
+        .filter((m) => m.text.length > 0);
+
+      const contents: Array<{ role: string; parts: Array<{ text: string }> }> = [];
+      for (const m of rawFormatted) {
+        if (contents.length === 0) {
+          // First turn must always be from the user
+          contents.push({ role: 'user', parts: [{ text: m.text }] });
+        } else {
+          const last = contents[contents.length - 1];
+          if (last.role === m.role) {
+            // Merge consecutive messages with identical roles
+            last.parts[0].text += '\n\n' + m.text;
+          } else {
+            contents.push({ role: m.role, parts: [{ text: m.text }] });
+          }
+        }
+      }
+
+      if (contents.length === 0) {
+        contents.push({ role: 'user', parts: [{ text: 'Hello JL Technologies' }] });
+      }
 
       let reply = '';
       try {

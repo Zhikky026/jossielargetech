@@ -22,11 +22,17 @@ let currentInquiriesUnsub: (() => void) | null = null;
 let userInquiriesList: ProjectInquiry[] = [];
 
 // Initialize once DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
+function bootstrapFirebaseUI() {
   initFirebaseAuthUI();
   setupFormPersistence();
   setupInquiriesPortalUI();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootstrapFirebaseUI);
+} else {
+  bootstrapFirebaseUI();
+}
 
 // Toast notification helper
 function showToast(message: string, type: 'info' | 'success' | 'error' = 'info') {
